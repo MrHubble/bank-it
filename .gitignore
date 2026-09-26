@@ -1,0 +1,7 @@
+node_modules/
+dist/
+dist-leotoby/
+.DS_Store
+*.log
+/sweeps/
+/test-results/

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#6EC3FF" />
+    <meta name="description" content="Bank basketballs off roofs, bins, trampolines, umbrellas and the odd seagull. A trick-shot driveway game by LeoToby." />
+    <title>BANK IT — Take the scenic route.</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236EC3FF'/%3E%3Cpath d='M5 22 Q13 3 25 10' fill='none' stroke='%23161513' stroke-width='2' stroke-dasharray='2 2.6' stroke-linecap='round'/%3E%3Ccircle cx='25' cy='12' r='5.4' fill='%23F47B20' stroke='%23161513' stroke-width='2'/%3E%3Cpath d='M19.8 12h10.4M25 6.8v10.4' stroke='%23161513' stroke-width='1.3'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <main id="stage" class="stage" aria-label="A driveway with a basketball hoop on the garage. Drag back from the ball to shoot."></main>
+      <div id="captions" class="captions" aria-hidden="true"></div>
+
+      <div id="hud" class="hud" hidden>
+        <header class="hud-top">
+          <div class="brand">
+            <span class="brand-name">BANK IT<span class="brand-dot">.</span></span>
+            <span class="brand-mode" id="mode-label"></span>
+          </div>
+          <div id="status" class="status chip" aria-live="polite"></div>
+          <div class="tools">
+            <button id="btn-ghost" class="icon-btn" type="button" aria-label="Ghost path of the last shot" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18C7 6 15 4 21 9" stroke-dasharray="2.2 2.6" /><circle cx="19.5" cy="9.5" r="2.4" /></svg>
+            </button>
+            <button id="btn-sound" class="icon-btn" type="button" aria-label="Sound on" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z" /><path class="waves" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11" /><path class="cross" d="M16 9l5 6m0-6-5 6" /></svg>
+            </button>
+            <button id="btn-menu" class="icon-btn" type="button" aria-label="Menu">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14" /></svg>
+            </button>
+          </div>
+        </header>
+
+        <div id="chain" class="chain" aria-live="polite"></div>
+
+        <footer class="hud-bottom">
+          <p id="hint" class="hint"></p>
+          <div class="tuner" role="group" aria-label="Aim">
+            <div class="tune">
+              <button type="button" data-nudge="angle+" aria-label="Aim more to the left">◀</button>
+              <span class="readout"><small>Angle</small><b id="angle-readout">52.0°</b></span>
+              <button type="button" data-nudge="angle-" aria-label="Aim more to the right">▶</button>
+            </div>
+            <div class="tune">
+              <button type="button" data-nudge="power-" aria-label="Less power">−</button>
+              <span class="readout"><small>Power</small><b id="power-readout">70.0%</b></span>
+              <button type="button" data-nudge="power+" aria-label="More power">+</button>
+            </div>
+            <button id="btn-shoot" type="button" class="shoot-btn">Shoot</button>
+            <button id="btn-retry" type="button" class="retry-btn" aria-label="Retry (R)" title="Retry (R)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5" /></svg>
+            </button>
+          </div>
+        </footer>
+      </div>
+
+      <section id="overlay" class="overlay" hidden></section>
+      <div id="boot" class="boot"><span>BANK IT<b>.</b></span><small>Warming up the driveway…</small></div>
+      <noscript><p class="noscript">BANK IT needs JavaScript to play.</p></noscript>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

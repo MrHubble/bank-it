@@ -1,0 +1,45 @@
+import { launch } from "./harness.mjs";
+const out = process.argv[2] ?? "/tmp";
+const browser = await launch();
+const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+const page = await context.newPage();
+const logs = [];
+page.on("console", (m) => { if (m.type() === "error" || m.type() === "warning") logs.push(m.type() + " " + m.text().slice(0, 200)); });
+page.on("pageerror", (e) => logs.push("pageerror " + String(e).slice(0, 300)));
+await page.goto("http://localhost:4311/", { timeout: 20000 });
+await page.waitForFunction(() => !!window.bankIt, null, { timeout: 30000 });
+await page.evaluate(() => window.bankIt.startFreestyle("bin-there"));
+await page.waitForTimeout(300);
+const st = () => page.evaluate(() => { const s = window.bankIt.state(); return { phase: s.phase, score: s.mode?.score, left: s.mode?.shotsLeft, chain: s.log.distinct.join(">"), scored: s.log.scored, ball: s.ball }; });
+// 1. Direct basket
+await page.evaluate(() => { window.bankIt.setAim({ angleTenths: 450, powerTenths: 700 }); window.bankIt.shoot(); });
+await page.waitForTimeout(550);
+await page.screenshot({ path: `${out}/s1-mid.png` });
+await page.waitForTimeout(700);
+await page.screenshot({ path: `${out}/s1-end.png` });
+console.log("direct", JSON.stringify(await st()));
+await page.waitForTimeout(1600);
+// 2. Bin then backboard
+await page.evaluate(() => { window.bankIt.setAim({ angleTenths: 730, powerTenths: 655 }); window.bankIt.shoot(); });
+await page.waitForTimeout(1500);
+await page.screenshot({ path: `${out}/s2-mid.png` });
+await page.waitForTimeout(500);
+console.log("bin>board", JSON.stringify(await st()));
+await page.screenshot({ path: `${out}/s2-end.png` });
+await page.waitForTimeout(2200);
+// 3. Mouse drag from the ball
+const ball = await page.evaluate(() => { const l = window.bankIt.launch(); return window.bankIt.toScreen(l.x, l.y); });
+console.log("ball screen", ball);
+await page.mouse.move(ball.x, ball.y);
+await page.mouse.down();
+await page.mouse.move(ball.x - 60, ball.y + 60, { steps: 5 });
+await page.mouse.move(ball.x - 110, ball.y + 105, { steps: 5 });
+await page.screenshot({ path: `${out}/s3-drag.png` });
+console.log("while dragging", JSON.stringify(await page.evaluate(() => window.bankIt.state().aim)));
+await page.mouse.up();
+await page.waitForTimeout(100);
+console.log("after release", JSON.stringify(await st()));
+await page.waitForTimeout(2500);
+console.log("later", JSON.stringify(await st()));
+console.log(logs.slice(0, 10).join("\n"));
+await browser.close();
