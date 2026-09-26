@@ -1,8 +1,8 @@
-import { launch } from "./harness.mjs";
+import { BASE, launch } from "./harness.mjs";
 const browser = await launch();
 for (const [w, h, dpr] of [[1280, 800, 1], [844, 390, 3]]) {
   const page = await (await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: dpr })).newPage();
-  await page.goto("http://localhost:4311/");
+  await page.goto(BASE);
   await page.waitForFunction(() => !!window.bankIt, null, { timeout: 30000 });
   for (const l of ["bin-there", "air-mail", "flight-risk"]) {
     await page.evaluate((l) => window.bankIt.startFreestyle(l), l);

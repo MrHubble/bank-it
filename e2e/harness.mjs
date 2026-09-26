@@ -1,7 +1,8 @@
 // Tiny Playwright harness for looking at and driving the game in Chromium.
-// Uses the globally installed Playwright and the preinstalled browser.
+// Uses Playwright (installed globally or locally) and its bundled Chromium.
+// Start a server first, e.g. `npm run build && npx vite preview --port 4311`.
+export const BASE = process.env.BANKIT_URL ?? "http://localhost:4311/";
 import { createRequire } from "node:module";
-import { spawn } from "node:child_process";
 const require = createRequire(import.meta.url);
 let pw;
 try {
@@ -10,20 +11,6 @@ try {
   pw = require("/opt/node22/lib/node_modules/playwright");
 }
 export const { chromium, devices } = pw;
-
-export async function serve(dir, port) {
-  const proc = spawn("npx", ["vite", "preview", "--outDir", dir, "--port", String(port), "--strictPort"], { stdio: "pipe", cwd: new URL("..", import.meta.url).pathname });
-  await new Promise((resolve, reject) => {
-    const t = setTimeout(() => reject(new Error("server timeout")), 20000);
-    proc.stdout.on("data", (d) => {
-      if (String(d).includes("http")) {
-        clearTimeout(t);
-        resolve();
-      }
-    });
-  });
-  return proc;
-}
 
 export async function launch() {
   return chromium.launch({ args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"] });

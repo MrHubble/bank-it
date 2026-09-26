@@ -1,13 +1,13 @@
 // Slow-motion close-ups of a prop reacting to a shot.
 //   node e2e/closeup.mjs out layout a/p/t x,y,w,h(world) frames(ms of slowed wall time)
-import { launch } from "./harness.mjs";
+import { BASE, launch } from "./harness.mjs";
 const [out, layout, shot, box, framesArg, waitFor] = process.argv.slice(2);
 const [a, p, t] = shot.split("/").map(Number);
 const [bx, by, bw, bh] = box.split(",").map(Number);
 const frames = framesArg.split(",").map(Number);
 const browser = await launch();
 const page = await (await browser.newContext({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 })).newPage();
-await page.goto("http://localhost:4311/");
+await page.goto(BASE);
 await page.waitForFunction(() => !!window.bankIt, null, { timeout: 30000 });
 await page.evaluate((l) => window.bankIt.startFreestyle(l), layout);
 await page.evaluate(([aim, tt]) => window.bankIt.queueShot(aim, tt), [{ angleTenths: a, powerTenths: p }, t]);

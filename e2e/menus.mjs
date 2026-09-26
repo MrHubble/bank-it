@@ -1,9 +1,9 @@
-import { launch } from "./harness.mjs";
+import { BASE, launch } from "./harness.mjs";
 const out = process.argv[2] ?? "/tmp";
 const [w, h] = (process.argv[3] ?? "1280x800").split("x").map(Number);
 const browser = await launch();
 const page = await (await browser.newContext({ viewport: { width: w, height: h } })).newPage();
-await page.goto("http://localhost:4311/");
+await page.goto(BASE);
 await page.waitForFunction(() => !!window.bankIt, null, { timeout: 30000 });
 await page.waitForTimeout(700);
 await page.screenshot({ path: `${out}/m-title-${w}.png` });

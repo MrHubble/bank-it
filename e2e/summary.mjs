@@ -1,8 +1,8 @@
-import { launch } from "./harness.mjs";
+import { BASE, launch } from "./harness.mjs";
 const out = process.argv[2] ?? "/tmp";
 const browser = await launch();
 const page = await (await browser.newContext({ viewport: { width: 1280, height: 800 } })).newPage();
-await page.goto("http://localhost:4311/");
+await page.goto(BASE);
 await page.waitForFunction(() => !!window.bankIt, null, { timeout: 30000 });
 await page.evaluate(() => { localStorage.setItem("bankit.v1.best.air-mail", JSON.stringify({ score: 1500, chain: [], chainScore: 0 })); window.bankIt.startFreestyle("air-mail"); window.bankIt.setTimeScale(3); });
 const shots = [[464, 775], [144, 347], [239, 359], [199, 749], [300, 300], [464, 775], [144, 347], [239, 359], [199, 749], [464, 775]];

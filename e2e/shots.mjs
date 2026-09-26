@@ -1,4 +1,4 @@
-import { launch } from "./harness.mjs";
+import { BASE, launch } from "./harness.mjs";
 const out = process.argv[2] ?? "/tmp";
 const browser = await launch();
 const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
@@ -6,7 +6,7 @@ const page = await context.newPage();
 const logs = [];
 page.on("console", (m) => { if (m.type() === "error" || m.type() === "warning") logs.push(m.type() + " " + m.text().slice(0, 200)); });
 page.on("pageerror", (e) => logs.push("pageerror " + String(e).slice(0, 300)));
-await page.goto("http://localhost:4311/", { timeout: 20000 });
+await page.goto(BASE, { timeout: 20000 });
 await page.waitForFunction(() => !!window.bankIt, null, { timeout: 30000 });
 await page.evaluate(() => window.bankIt.startFreestyle("bin-there"));
 await page.waitForTimeout(300);

@@ -96,6 +96,18 @@ node scripts/draw.ts flight-risk out.svg 540/210/519
 node scripts/solutions.ts --write
 ```
 
+### Browser checks
+
+`e2e/` holds Playwright scripts that drive the real game in Chromium through a small test hook (`window.bankIt`). Serve a build first, then run them:
+
+```bash
+npm run build && npx vite preview --port 4311 &
+node e2e/verify.mjs http://localhost:4311/          # 52 checks: mouse, touch, keyboard, retries, every Called Shot, persistence, resizing, pausing
+BANKIT_URL=http://localhost:4311/ node e2e/sizes.mjs /tmp/shots   # screenshots at desktop and phone sizes
+```
+
+They use Playwright from a global install or `npx playwright`, with its bundled Chromium.
+
 Every Called Shot records a verified solution (launch position, angle, power and release tick) in `src/levels/challenges.ts`. `tests/solutions.test.ts` replays them all, and [SOLUTIONS.md](SOLUTIONS.md) lists them with how forgiving each one is.
 
 ## Publishing to LeoToby

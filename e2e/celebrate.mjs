@@ -1,10 +1,10 @@
-import { launch } from "./harness.mjs";
+import { BASE, launch } from "./harness.mjs";
 const out = process.argv[2] ?? "/tmp";
 const [a, p, t] = (process.argv[3] ?? "658/845/326").split("/").map(Number);
 const layout = process.argv[4] ?? "flight-risk";
 const browser = await launch();
 const page = await (await browser.newContext({ viewport: { width: 1280, height: 800 } })).newPage();
-await page.goto("http://localhost:4311/");
+await page.goto(BASE);
 await page.waitForFunction(() => !!window.bankIt, null, { timeout: 30000 });
 await page.evaluate((l) => window.bankIt.startFreestyle(l), layout);
 await page.evaluate(([aim, tt]) => window.bankIt.queueShot(aim, tt), [{ angleTenths: a, powerTenths: p }, t]);

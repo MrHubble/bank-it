@@ -1,7 +1,7 @@
 // End-to-end checks in Chromium. Prints PASS/FAIL per check.
 //   node e2e/verify.mjs http://localhost:4311/ [outDir]
-import { launch } from "./harness.mjs";
-const base = process.argv[2] ?? "http://localhost:4311/";
+import { BASE, launch } from "./harness.mjs";
+const base = process.argv[2] ?? BASE;
 const out = process.argv[3] ?? "/tmp";
 const results = [];
 const check = (name, ok, detail = "") => {

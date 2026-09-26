@@ -770,8 +770,17 @@ export class Game {
     const top = document.querySelector<HTMLElement>(".hud-top");
     const bottom = document.querySelector<HTMLElement>(".hud-bottom");
     const hudVisible = !this.hud.root.hidden;
-    const t = hudVisible && top ? Math.max(0, top.getBoundingClientRect().bottom - stageRect.top) : 8;
-    const b = hudVisible && bottom ? Math.max(0, stageRect.bottom - bottom.getBoundingClientRect().top) : 8;
+    // Ignore bars that aren't rendered (hidden, or display: none gives an empty rect).
+    const shown = (el: HTMLElement | null): el is HTMLElement => !!el && hudVisible && el.getClientRects().length > 0 && el.getBoundingClientRect().height > 0;
+    let t = shown(top) ? Math.max(0, top.getBoundingClientRect().bottom - stageRect.top) : 8;
+    let b = shown(bottom) ? Math.max(0, stageRect.bottom - bottom.getBoundingClientRect().top) : 8;
+    // Never let the HUD squeeze the driveway below about half the screen.
+    const maxTotal = stageRect.height * 0.5;
+    if (t + b > maxTotal) {
+      const k = maxTotal / (t + b);
+      t *= k;
+      b *= k;
+    }
     const next = { top: Math.round(t), right: 0, bottom: Math.round(b), left: 0 };
     document.documentElement.style.setProperty("--hud-top", `${next.top}px`);
     if (next.top !== this.insets.top || next.bottom !== this.insets.bottom) {
