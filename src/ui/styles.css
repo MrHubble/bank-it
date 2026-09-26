@@ -484,7 +484,7 @@ button:disabled {
   border: 2px solid var(--ink);
   border-radius: 8px;
   padding: 5px 9px 4px;
-  max-width: min(64ch, 46vw);
+  max-width: min(72ch, 46vw);
   flex-shrink: 1;
 }
 .hint:empty {
@@ -495,6 +495,7 @@ button:disabled {
   align-items: stretch;
   gap: 6px;
   flex-shrink: 0;
+  margin-left: auto;
 }
 .tune {
   display: flex;
@@ -853,6 +854,9 @@ button:disabled {
   font-size: 26px;
   line-height: 1;
 }
+.layout-card strong {
+  font-size: 23px;
+}
 .mc-copy,
 .lc-copy {
   font-size: 14px;
@@ -1151,21 +1155,26 @@ button:disabled {
     text-align: center;
   }
   .tuner {
+    flex-wrap: wrap;
     justify-content: space-between;
   }
   .tune {
-    flex: 1;
+    flex: 1 1 calc(50% - 3px);
+    min-height: 44px;
   }
   .tune button {
-    flex: 0 0 38px;
+    flex: 0 0 40px;
   }
   .readout {
     flex: 1;
     min-width: 0;
   }
   .shoot-btn {
-    padding: 0 10px;
-    font-size: 15px;
+    flex: 1;
+    font-size: 17px;
+  }
+  .retry-btn {
+    flex: 0 0 56px;
   }
 }
 

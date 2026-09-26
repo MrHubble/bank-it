@@ -233,11 +233,14 @@ export class Game {
       },
       lastRelease: () => this.shot?.setup.releaseTick ?? null,
       audio: () => this.sound.state,
+      /** Slow motion for inspecting reactions frame by frame (1 = normal). */
+      setTimeScale: (k: number) => (this.loop.timeScale = Math.max(0.01, Math.min(4, k))),
       challenges: () => CHALLENGES.map((c) => ({ id: c.id, number: c.number, title: c.title, solution: c.solution })),
       memory: () => {
         let objects = 0;
         this.stage.scene.traverse(() => objects++);
-        return { ...this.stage.renderer.info.memory, objects, canvases: document.querySelectorAll("canvas").length };
+        const r = this.stage.renderer.info.render;
+        return { ...this.stage.renderer.info.memory, objects, canvases: document.querySelectorAll("canvas").length, calls: r.calls, triangles: r.triangles, pixelRatio: this.stage.renderer.getPixelRatio() };
       },
       retry: () => this.retry(),
       startFreestyle: (id: string) => this.startFreestyle(id),
@@ -332,7 +335,8 @@ export class Game {
   private readyHint(): string {
     if (this.mode?.kind === "challenge") return this.mode.def.hint;
     const touch = window.matchMedia("(pointer: coarse)").matches;
-    return touch ? "Drag back from the ball, then let go." : "Drag back from the ball, let go to shoot · or arrows + Space";
+    if (window.innerHeight > window.innerWidth && window.innerWidth < 600) return "Turn your phone sideways for a bigger driveway. Drag back from the ball to shoot.";
+    return touch ? "Drag back from the ball, then let go." : "Drag back from the ball and let go · keys: arrows, Space";
   }
 
   private shoot(): void {
@@ -646,7 +650,8 @@ export class Game {
     // Escalating celebration.
     const words = ["BASKET!", "BANKED IT!", "COMBO!", "SCENIC ROUTE!", "LEGENDARY!"];
     const tones: CaptionTone[] = ["good", "good", "great", "great", "legend"];
-    const top = { x: c.x - 0.6, y: hoop.boardTop + 0.9 };
+    // Open sky to the left of the roof, clear of the hoop and the HUD.
+    const top = { x: c.x - 2.8, y: hoop.rimY + 2.0 };
     if (m?.kind === "challenge" && !calledIt) {
       this.fx.caption("NOT THE CALLED ROUTE", top, "near", "md");
       this.sound.cheer(0);
@@ -657,8 +662,13 @@ export class Game {
     if (swish && n === 0 && !this.log.groundBounce) this.fx.caption("NOTHING BUT NET", { x: c.x - 1.4, y: hoop.rimY - 0.9 }, "info", "sm");
     if (this.log.birdHit) this.fx.caption("BIRDIE!", { x: c.x - 2.2, y: hoop.boardTop + 0.1 }, "bird", "md");
     const confetti = ["#ffd23f", "#e8397f", "#6ec3ff", "#c5f26e", "#ff6b2c", "#ffffff"];
-    this.fx.burst("confetti", { x: c.x, y: hoop.rimY + 0.2 }, { count: 10 + level * 10, speed: 3.5 + level * 0.8, dir: Math.PI / 2, spread: 2.2, colors: confetti, size: 0.09, life: 1.3, gravity: -5, drag: 1.2, sway: 0.6 });
-    if (level >= 2) this.fx.burst("spark", { x: c.x, y: hoop.rimY }, { count: 4 + level * 3, speed: 4, colors: ["#ffd23f", "#ffffff"], size: 0.1, life: 0.6, gravity: -2 });
+    // In front of the garage wall (z 0.6) so none of it hides behind the house.
+    this.fx.burst("confetti", { x: c.x - 0.2, y: hoop.rimY + 0.2 }, { count: 12 + level * 10, speed: 3.8 + level * 0.8, dir: Math.PI / 2 + 0.35, spread: 2.0, colors: confetti, size: 0.1 + level * 0.01, life: 1.4 + level * 0.15, gravity: -5, drag: 1.2, sway: 0.6, z: 1.2 });
+    if (level >= 2) this.fx.burst("spark", { x: c.x, y: hoop.rimY }, { count: 4 + level * 3, speed: 4, colors: ["#ffd23f", "#ffffff"], size: 0.1, life: 0.6, gravity: -2, z: 1.2 });
+    if (level >= 3) {
+      // The long-chain party: confetti rains across the whole driveway.
+      for (const x of [3.5, 7, 10.5]) this.fx.burst("confetti", { x, y: 8.2 }, { count: 8 + (level - 3) * 6, speed: 1.5, dir: -Math.PI / 2, spread: 2.6, colors: confetti, size: 0.12, life: 2.2, gravity: -2.5, drag: 1.5, sway: 1, z: 1.2 });
+    }
     if (level >= 3) this.fx.shake(0.06 + (level - 3) * 0.05);
 
     let wait = 1.25 + level * 0.3;
@@ -780,7 +790,8 @@ export class Game {
         def,
         layoutName: layoutById(def.layoutId).name,
         best: bests[i],
-        locked: i > 0 && bests[i - 1] === null && bests[i] === null,
+        // In order, but you can skip one that has you stuck.
+        locked: i > 1 && bests[i] === null && bests[i - 1] === null && bests[i - 2] === null,
         label: (id: string) => layoutById(def.layoutId).props.find((p) => p.id === id)?.label ?? id,
       })),
       inGame: this.mode && this.phase !== "idle" ? this.mode.kind : null,

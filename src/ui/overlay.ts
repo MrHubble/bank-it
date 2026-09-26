@@ -197,7 +197,7 @@ export class Overlay {
           <dl class="summary-stats">
             <div><dt>Baskets</dt><dd>${s.baskets}/${s.shots}</dd></div>
             <div><dt>Best shot</dt><dd>${formatPoints(s.bestShot)}</dd></div>
-            <div class="wide"><dt>Best chain</dt><dd>${s.bestChain ? (s.bestChain.length ? esc(s.bestChain.join(" → ")) + " → BASKET" : "Straight in") : "—"}</dd></div>
+            <div class="wide"><dt>Best chain</dt><dd>${s.bestChain ? (s.bestChain.length ? esc(s.bestChain.map((l) => l.toUpperCase()).join(" → ")) + " → BASKET" : "Straight in") : "—"}</dd></div>
           </dl>
           <div class="stack stack--row">
             <button class="btn primary" data-action="replay">Play again</button>

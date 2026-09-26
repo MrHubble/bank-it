@@ -3,7 +3,7 @@ import type { TrampolineDef } from "../../props/defs.ts";
 import { TRAMPOLINE_FRAME_RADIUS } from "../../props/geometry.ts";
 import type { SimEvent } from "../../sim/types.ts";
 import type { Effects } from "../effects.ts";
-import { part, toon, toonUnique } from "../materials.ts";
+import { mergedMesh, part, toon, toonUnique } from "../materials.ts";
 import { type PropView, type PropViewFactory, Spring, type ViewFrame } from "./types.ts";
 
 /** Round backyard trampoline. The mat visibly sinks and springs on every boost. */
@@ -46,23 +46,20 @@ export const trampolineView: PropViewFactory<TrampolineDef> = {
       springs.setMatrixAt(i, tmp.matrix);
     }
     root.add(springs);
-    // W-legs: pairs of uprights joined at the bottom.
-    const legMat = toon("#3d4450");
+    // W-legs: pairs of uprights joined at the bottom, baked into one mesh.
+    const upright = new THREE.CylinderGeometry(0.03, 0.03, top - 0.05, 6);
+    const footGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.5, 6);
+    const legs: { geometry: THREE.BufferGeometry; position: THREE.Vector3Like; rotation?: THREE.Euler }[] = [];
     for (const a of [Math.PI * 0.25, Math.PI * 0.75, Math.PI * 1.25, Math.PI * 1.75]) {
       const cx = Math.cos(a) * R * 0.95;
       const cz = Math.sin(a) * R * 0.95;
       const tangent = new THREE.Vector3(-Math.sin(a), 0, Math.cos(a));
-      for (const s of [-1, 1]) {
-        const leg = part(new THREE.CylinderGeometry(0.03, 0.03, top - 0.05, 6), legMat, { outline: 0.012 });
-        leg.position.set(cx + tangent.x * s * 0.22, (top - 0.05) / 2, cz + tangent.z * s * 0.22);
-        root.add(leg);
-      }
-      const foot = part(new THREE.CylinderGeometry(0.03, 0.03, 0.5, 6), legMat, { outline: 0.012 });
-      foot.rotation.z = Math.PI / 2;
-      foot.rotation.y = -a + Math.PI / 2;
-      foot.position.set(cx, 0.03, cz);
-      root.add(foot);
+      for (const s of [-1, 1]) legs.push({ geometry: upright, position: { x: cx + tangent.x * s * 0.22, y: (top - 0.05) / 2, z: cz + tangent.z * s * 0.22 } });
+      legs.push({ geometry: footGeo, position: { x: cx, y: 0.03, z: cz }, rotation: new THREE.Euler(0, -a + Math.PI / 2, Math.PI / 2, "YXZ") });
     }
+    root.add(mergedMesh(legs, toon("#3d4450"), { outline: 0.012 }));
+    upright.dispose();
+    footGeo.dispose();
 
     const dip = new Spring(220, 7);
     let dipX = 0;

@@ -2,7 +2,7 @@ import * as THREE from "three";
 import type { DecorDef } from "../props/defs.ts";
 import { OBLIQUE } from "./camera.ts";
 import { toon, toonUnique } from "./materials.ts";
-import { GARAGE_Z_BACK, GARAGE_Z_FRONT } from "./props/garageView.ts";
+import { GARAGE_Z_BACK } from "./props/garageView.ts";
 
 // The driveway set: sky, clouds, fence, lawn, footpath and kerb. None of it
 // can be hit. It is kept unoutlined, a little softer in colour and behind the
@@ -106,10 +106,13 @@ export class Scenery {
     const o = this.object;
     o.name = "scenery";
     // Ground: lawn everywhere, then the road, footpath and driveway on top.
-    // Only as deep as the fence: the oblique camera would lift anything further back into the sky.
-    const lawn = new THREE.Mesh(new THREE.PlaneGeometry(80, 12), toon("#8cc25e"));
+    // From the fence forward only: the oblique camera would lift anything
+    // further back into the sky. Forward it runs a long way, so tall phone
+    // screens show lawn below the driveway rather than sky.
+    const LAWN_FRONT = 40;
+    const lawn = new THREE.Mesh(new THREE.PlaneGeometry(90, LAWN_FRONT - FENCE_Z + 0.3), toon("#8cc25e"));
     lawn.rotation.x = -Math.PI / 2;
-    lawn.position.set(8, -0.002, FENCE_Z + 6 - 0.3);
+    lawn.position.set(8, -0.002, (LAWN_FRONT + FENCE_Z - 0.3) / 2);
     lawn.receiveShadow = true;
     o.add(lawn);
     const slab = (x0: number, x1: number, z0: number, z1: number, color: string, y = 0) => {
@@ -119,15 +122,15 @@ export class Scenery {
       o.add(m);
       return m;
     };
-    const drive = slab(1.35, 14.4, FENCE_Z, GARAGE_Z_FRONT + 0.1, "#e0d3bb", 0.004);
+    const drive = slab(1.35, 14.4, FENCE_Z, 2.2, "#e0d3bb", 0.004);
     drive.material = toonUnique("#e3d6be", { map: concreteTexture() });
-    slab(-8, -0.25, FENCE_Z - 0.3, 8, "#6d6e74", -0.02);
-    slab(-0.25, -0.05, FENCE_Z - 0.3, 8, "#cfd2d6", 0.02);
-    slab(0.35, 1.35, FENCE_Z - 0.3, 8, "#ebe3d3", 0.002);
+    slab(-12, -0.25, FENCE_Z - 0.3, 40, "#6d6e74", -0.02);
+    slab(-0.25, -0.05, FENCE_Z - 0.3, 40, "#cfd2d6", 0.02);
+    slab(0.35, 1.35, FENCE_Z - 0.3, 40, "#ebe3d3", 0.002);
     // Driveway expansion joints and an oil stain.
     for (const x of [3.9, 6.5, 9.1, 11.7]) {
-      const j = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.01, GARAGE_Z_FRONT - FENCE_Z), toon("#c1b297"));
-      j.position.set(x, 0.006, (GARAGE_Z_FRONT + FENCE_Z) / 2);
+      const j = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.01, 2.2 - FENCE_Z), toon("#c1b297"));
+      j.position.set(x, 0.006, (2.2 + FENCE_Z) / 2);
       o.add(j);
     }
     const stain = new THREE.Mesh(new THREE.CircleGeometry(0.5, 20), new THREE.MeshBasicMaterial({ color: "#cbbda4", transparent: true, opacity: 0.6 }));
@@ -154,6 +157,7 @@ export class Scenery {
     palings.receiveShadow = true;
     fence.add(palings);
     for (const y of [0.35, 1.55]) fence.add(box(21.4, 0.1, 0.05, "#9d6c41", 3.65, y, FENCE_Z + 0.05, false));
+    palings.castShadow = false;
     fence.add(box(21.4, 0.06, 0.1, "#a6734a", 3.65, 1.97, FENCE_Z, false));
     o.add(fence);
 

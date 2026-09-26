@@ -10,6 +10,8 @@ export class FixedLoop {
   private last = 0;
   private raf = 0;
   private running = false;
+  /** Debug/test only: run game time slower (0.1) or faster than real time. */
+  timeScale = 1;
   private readonly tick: () => void;
   private readonly frame: (alpha: number, dt: number) => void;
 
@@ -34,7 +36,7 @@ export class FixedLoop {
   private onFrame = (now: number): void => {
     if (!this.running) return;
     // Clamp long frames (a stall or a background tab) so physics never jumps.
-    const delta = Math.min(0.1, Math.max(0, (now - this.last) / 1000));
+    const delta = Math.min(0.1, Math.max(0, (now - this.last) / 1000)) * this.timeScale;
     this.last = now;
     this.acc += delta;
     let steps = 0;

@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils.js";
+import { mergeGeometries, mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
 // Chunky cartoon materials: three-band toon shading, soft shadows and a thin
 // ink outline on the things the ball can hit. Scenery gets no outline and
@@ -129,4 +129,25 @@ export function disposeTree(root: THREE.Object3D): void {
       m.dispose();
     }
   });
+}
+
+/** Bake several positioned copies of geometries into one static mesh (one draw call). */
+export function mergedMesh(
+  parts: { geometry: THREE.BufferGeometry; position: THREE.Vector3Like; rotation?: THREE.Euler }[],
+  material: THREE.Material,
+  opts: MeshOpts = {},
+): THREE.Mesh {
+  const baked = parts.map((p) => {
+    const g = p.geometry.clone();
+    const m = new THREE.Matrix4().compose(
+      new THREE.Vector3(p.position.x, p.position.y, p.position.z),
+      new THREE.Quaternion().setFromEuler(p.rotation ?? new THREE.Euler()),
+      new THREE.Vector3(1, 1, 1),
+    );
+    g.applyMatrix4(m);
+    return g;
+  });
+  const merged = mergeGeometries(baked, false);
+  for (const g of baked) g.dispose();
+  return part(merged, material, opts);
 }

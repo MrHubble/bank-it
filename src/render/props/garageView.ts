@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import type { GarageDef, RoofDef } from "../../props/defs.ts";
-import { extrudeOutline, part, toon } from "../materials.ts";
+import { extrudeOutline, mergedMesh, part, toon } from "../materials.ts";
+import { roofView } from "./roofView.ts";
 import type { PropView, PropViewFactory } from "./types.ts";
 
 export const GARAGE_Z_BACK = -4.7;
@@ -22,24 +23,34 @@ export const garageView: PropViewFactory<GarageDef> = {
     root.name = "garage";
     const depth = GARAGE_Z_FRONT - GARAGE_Z_BACK;
     const zMid = (GARAGE_Z_FRONT + GARAGE_Z_BACK) / 2;
-    const outline = [
-      { x: def.x0, y: 0 },
-      { x: def.x1, y: 0 },
-      { x: def.x1, y: roofUndersideAt(roof, def.x1, def.wallTop) + 0.05 },
-      { x: def.x0, y: roofUndersideAt(roof, def.x0, def.wallTop) + 0.05 },
-    ];
+    // Draw the whole gable building so it never looks cut off on wide
+    // screens. Beyond the ridge the ball is already out of play, so the far
+    // roof slope is scenery only (no collider).
+    const farWall = roof ? 2 * roof.ridge.x - def.x0 : def.x1;
+    const outline = roof
+      ? [
+          { x: def.x0, y: 0 },
+          { x: farWall, y: 0 },
+          { x: farWall, y: roofUndersideAt(roof, def.x0, def.wallTop) + 0.05 },
+          { x: roof.ridge.x, y: roof.ridge.y - roof.thickness + 0.05 },
+          { x: def.x0, y: roofUndersideAt(roof, def.x0, def.wallTop) + 0.05 },
+        ]
+      : [
+          { x: def.x0, y: 0 },
+          { x: def.x1, y: 0 },
+          { x: def.x1, y: def.wallTop },
+          { x: def.x0, y: def.wallTop },
+        ];
     const body = part(extrudeOutline(outline, depth, 0.02), toon("#f3e4c4"), { outline: 0.03 });
     body.position.z = zMid;
     root.add(body);
 
-    // Weatherboards on the camera-facing side.
-    const boardMat = toon("#e6d2ab");
-    for (let y = 0.35; y < def.wallTop; y += 0.35) {
-      const m = new THREE.Mesh(new THREE.BoxGeometry(def.x1 - def.x0 - 0.1, 0.03, 0.02), boardMat);
-      m.position.set((def.x0 + def.x1) / 2, y, GARAGE_Z_FRONT + 0.01);
-      m.receiveShadow = true;
-      root.add(m);
-    }
+    // Weatherboards on the camera-facing side (one merged mesh).
+    const boardGeo = new THREE.BoxGeometry(farWall - def.x0 - 0.1, 0.03, 0.02);
+    const boards: { geometry: THREE.BufferGeometry; position: THREE.Vector3Like }[] = [];
+    for (let y = 0.35; y < def.wallTop; y += 0.35) boards.push({ geometry: boardGeo, position: { x: (def.x0 + farWall) / 2, y, z: GARAGE_Z_FRONT + 0.01 } });
+    root.add(mergedMesh(boards, toon("#e6d2ab"), { outline: false, cast: false }));
+    boardGeo.dispose();
     // Side window.
     const win = part(new THREE.BoxGeometry(0.95, 0.85, 0.06), toon("#fbf8f0"), { outline: 0.02 });
     win.position.set(def.x0 + 1.25, 1.9, GARAGE_Z_FRONT + 0.02);
@@ -56,11 +67,14 @@ export const garageView: PropViewFactory<GarageDef> = {
     const door = part(new THREE.BoxGeometry(0.05, 2.55, doorW), toon("#c9d3dc"), { outline: 0.02 });
     door.position.set(def.x0 - 0.02, 1.28, -1.75);
     root.add(door);
-    const ribMat = toon("#aab6c1");
-    for (let y = 0.2; y < 2.5; y += 0.22) {
-      const rib = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.025, doorW - 0.05), ribMat);
-      rib.position.set(def.x0 - 0.03, y, -1.75);
-      root.add(rib);
+    const ribGeo = new THREE.BoxGeometry(0.06, 0.025, doorW - 0.05);
+    const ribs: { geometry: THREE.BufferGeometry; position: THREE.Vector3Like }[] = [];
+    for (let y = 0.2; y < 2.5; y += 0.22) ribs.push({ geometry: ribGeo, position: { x: def.x0 - 0.03, y, z: -1.75 } });
+    root.add(mergedMesh(ribs, toon("#aab6c1"), { outline: false, cast: false }));
+    ribGeo.dispose();
+    if (roof) {
+      const farRoof = roofView.create({ ...roof, id: `${roof.id}-far`, eave: { x: 2 * roof.ridge.x - roof.eave.x, y: roof.eave.y } }, layout);
+      root.add(farRoof.object);
     }
     const view: PropView = { def, object: root };
     return view;

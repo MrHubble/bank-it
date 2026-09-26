@@ -10,6 +10,8 @@ import type { PropView, PropViewFactory, ViewFrame } from "./types.ts";
 const TILE_ALONG = 0.36;
 const TILE_ACROSS = 0.44;
 
+const dxOf = (r: RoofDef) => r.ridge.x - r.eave.x;
+
 /** Terracotta roof. Tiles near the impact rattle; the slab collider never moves. */
 export const roofView: PropViewFactory<RoofDef> = {
   create(def) {
@@ -25,7 +27,7 @@ export const roofView: PropViewFactory<RoofDef> = {
     // Gutter along the eave.
     const gutter = part(new THREE.CylinderGeometry(0.09, 0.07, depth, 10, 1), toon("#e9e4dc"), { outline: 0.02 });
     gutter.rotation.x = Math.PI / 2;
-    gutter.position.set(def.eave.x - 0.05, def.eave.y - def.thickness * 0.55, (zFront + zBack) / 2);
+    gutter.position.set(def.eave.x - 0.05 * Math.sign(dxOf(def)), def.eave.y - def.thickness * 0.55, (zFront + zBack) / 2);
     root.add(gutter);
 
     // Tiles: instanced, staggered courses up the slope.

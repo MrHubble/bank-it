@@ -142,10 +142,13 @@ export class Effects {
     el.className = `caption caption--${tone} caption--${size}`;
     el.textContent = text;
     const tilt = (this.rand() - 0.5) * 14;
-    el.style.left = `${Math.min(this.size.w - 40, Math.max(40, s.x))}px`;
-    el.style.top = `${Math.min(this.size.h - 30, Math.max(60, s.y))}px`;
     el.style.setProperty("--tilt", `${tilt.toFixed(1)}deg`);
     this.layer.appendChild(el);
+    // Keep the whole caption on screen (it is centred on its anchor).
+    const halfW = el.offsetWidth / 2 + 10;
+    const halfH = el.offsetHeight / 2 + 6;
+    el.style.left = `${Math.min(this.size.w - halfW, Math.max(halfW, s.x))}px`;
+    el.style.top = `${Math.min(this.size.h - halfH, Math.max(halfH + 40, s.y))}px`;
     const ttl = size === "lg" ? 1500 : 1000;
     window.setTimeout(() => el.remove(), ttl);
   }

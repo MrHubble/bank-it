@@ -59,7 +59,7 @@ export function challengeComplete(req: Requirement, log: ShotLog): boolean {
 }
 
 export function describeRequirement(req: Requirement, label: (id: string) => string): string {
-  if (req.kind === "swish") return "Nothing but net";
+  if (req.kind === "swish") return "STRAIGHT IN · TOUCH NOTHING";
   const names = req.objects.map((o) => label(o).toUpperCase());
   return req.kind === "all" ? `${names.join(" + ")} + BASKET` : `${names.join(" → ")} → BASKET`;
 }

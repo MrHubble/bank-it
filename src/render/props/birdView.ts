@@ -66,8 +66,9 @@ export const birdView: PropViewFactory<BirdDef> = {
       geo.rotateX(Math.PI / 2);
       const wing = part(geo, grey, { outline: 0.015 });
       wing.scale.set(1, 1, z > 0 ? 1.9 : -1.9);
-      const tip = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.03, 0.06), dark);
-      tip.position.set(-0.4, 0.0, z > 0 ? 0.62 : -0.62);
+      // Dark wingtip at the swept-back end of the wing.
+      const tip = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.045, 0.12), dark);
+      tip.position.set(-0.42, 0.005, z > 0 ? 0.05 : -0.05);
       pivot.add(wing, tip);
       body.add(pivot);
       return pivot;

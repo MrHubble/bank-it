@@ -60,8 +60,8 @@ export const binView: PropViewFactory<BinDef> = {
     stripe.rotation.copy(box.rotation);
     rock.add(stripe);
 
-    const wobble = new Spring(140, 5.5);
-    const flap = new Spring(260, 8);
+    const wobble = new Spring(120, 4.2);
+    const flap = new Spring(240, 6);
 
     const view: PropView = {
       def,
@@ -70,14 +70,15 @@ export const binView: PropViewFactory<BinDef> = {
       onEvent(e: SimEvent, fx: Effects) {
         if (e.type !== "impact" || e.objectId !== def.id) return;
         const side = e.point.x < def.x ? 1 : -1;
-        wobble.kick(side * Math.min(5, 0.8 + e.speed * 0.35));
-        if (e.part === "lid") flap.kick(-(hingeRight ? 1 : -1) * Math.min(7, 1 + e.speed * 0.5));
+        wobble.kick(side * Math.min(7, 1.5 + e.speed * 0.5));
+        if (e.part === "lid") flap.kick(-(hingeRight ? 1 : -1) * Math.min(9, 2 + e.speed * 0.6));
         fx.burst("dust", { x: def.x, y: 0.05 }, { count: 4, speed: 0.8, dir: Math.PI / 2, spread: 2.4, colors: ["#e9dcc6"], size: 0.09, life: 0.5, gravity: 0.5 });
       },
       update(f: ViewFrame) {
-        rock.rotation.z = wobble.step(f.dt) * 0.07;
+        // Exaggerated, cartoon wobble. Purely cosmetic: the collider never moves.
+        rock.rotation.z = wobble.step(f.dt) * 0.11;
         const fl = flap.step(f.dt);
-        lidPivot.rotation.z = (hingeRight ? 1 : -1) * Math.max(-0.05, -fl) * 0.18;
+        lidPivot.rotation.z = (hingeRight ? 1 : -1) * Math.max(-0.05, -fl) * 0.45;
       },
       reset() {
         wobble.reset();
