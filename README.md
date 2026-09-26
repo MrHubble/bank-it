@@ -30,7 +30,7 @@ Roof → trampoline → bin → basket is (100 + 300) × 3 = 1,200. Repeat hits 
 ### Driveways
 
 1. **Bin There**: garage roof, wheelie bin and the backboard. Direct shots, bank shots and simple combinations.
-2. **Air Mail**: adds a trampoline and a striped umbrella. High arcs, and routes that go over the hoop, off the roof, back across the driveway and home again.
+2. **Air Mail**: the bin makes way for a trampoline and a striped umbrella. High arcs, and routes that go over the hoop, off the roof, back across the driveway and home again.
 3. **Flight Risk**: trampoline, bin and a seagull on patrol. Time the release to clip the gull.
 
 ## Stack
