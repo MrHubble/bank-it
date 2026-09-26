@@ -1,7 +1,6 @@
 import { defineConfig } from "vitest/config";
 
-// `npm run build:leotoby` passes --base=/games/bank-it/ so the build can be
-// copied into the LeoToby site. Plain `npm run build` serves from the root.
+// Cloudflare Pages serves this game at the root of bank-it.leotoby.com.
 export default defineConfig({
   build: {
     target: "es2022",
