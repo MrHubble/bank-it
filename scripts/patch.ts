@@ -11,6 +11,7 @@ export function applyPatch(layout: LayoutDef, patch?: string): LayoutDef {
   const out: LayoutDef = structuredClone(layout);
   for (const [k, v] of Object.entries(p)) {
     if (k === "launch" || k === "defaultAim") Object.assign(out[k], v);
+    else if (k.startsWith("+")) out.props.push({ id: k.slice(1), ...v } as unknown as LayoutDef["props"][number]);
     else {
       const prop = out.props.find((d) => d.id === k);
       if (!prop) throw new Error(`No prop ${k}`);

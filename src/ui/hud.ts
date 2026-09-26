@@ -43,6 +43,7 @@ export class Hud {
   private readonly ac = new AbortController();
   private repeatTimer = 0;
   private chainKey = "";
+  private chainCount = 0;
 
   constructor(cb: HudCallbacks) {
     const o = { signal: this.ac.signal };
@@ -163,8 +164,11 @@ export class Hud {
       this.chain.className = "chain";
       return;
     }
-    const chips = labels.map((l, i) => `<span class="link" style="--i:${i}">${esc(l.toUpperCase())}</span>`);
-    if (state === "scored") chips.push(`<span class="link link--basket" style="--i:${labels.length}">BASKET!</span>`);
+    // Only the newest link pops in; the rest of the chain stays put.
+    const fresh = labels.length > this.chainCount ? labels.length - 1 : -1;
+    this.chainCount = labels.length;
+    const chips = labels.map((l, i) => `<span class="link${i === fresh ? " link--new" : ""}">${esc(l.toUpperCase())}</span>`);
+    if (state === "scored") chips.push(`<span class="link link--basket link--new">BASKET!</span>`);
     const sep = '<span class="arrow" aria-hidden="true">→</span>';
     let tail = "";
     if (score && state !== "missed") {
@@ -188,6 +192,7 @@ export class Hud {
 
   clearChain(): void {
     this.chainKey = "";
+    this.chainCount = 0;
     this.chain.innerHTML = "";
     this.chain.className = "chain";
   }

@@ -19,6 +19,11 @@ export class Sound {
     return this.muted;
   }
 
+  /** "none" until the first user gesture creates the AudioContext. */
+  get state(): string {
+    return this.ctx ? this.ctx.state : "none";
+  }
+
   /** Call from a user gesture (pointerdown/keydown). Safe to call repeatedly. */
   unlock(): void {
     if (!this.ctx) {

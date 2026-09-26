@@ -30,6 +30,10 @@ const powers = range(opt("powers", "0:1000:10"));
 const ticks = range(opt("ticks", "0:0:1"));
 const out = opt("out", "");
 const patch = opt("patch", "");
+// --need a,b: routes containing all of these (any order); --seq a,b: in this order.
+const need = opt("need", "").split(",").filter(Boolean);
+const smartBird = Number(opt("smart-bird", "0"));
+const seq = opt("seq", "").split(",").filter(Boolean);
 const workers = Math.max(1, Math.min(cpus().length, 8));
 
 const t0 = Date.now();
@@ -42,14 +46,25 @@ const results = await Promise.all(
       (chunk) =>
         new Promise<{ hits: SweepHit[]; shots: number }>((resolve, reject) => {
           const w = new Worker(new URL("./sweep-worker.ts", import.meta.url), {
-            workerData: { layoutId, angles: chunk, powers, ticks, patch },
+            workerData: { layoutId, angles: chunk, powers, ticks, patch, smartBird },
           });
           w.once("message", resolve);
           w.once("error", reject);
         }),
     ),
 );
-const hits = results.flatMap((r) => r.hits);
+const allHits = results.flatMap((r) => r.hits);
+const matches = (h: SweepHit) => {
+  const r = h.route.split(">");
+  if (need.length && !need.every((n) => r.includes(n))) return false;
+  if (seq.length) {
+    let i = 0;
+    for (const id of r) if (id === seq[i]) i++;
+    if (i < seq.length) return false;
+  }
+  return true;
+};
+const hits = allHits.filter(matches);
 const shots = results.reduce((s, r) => s + r.shots, 0);
 console.log(`${layoutId}: ${shots} shots, ${hits.length} baskets in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 

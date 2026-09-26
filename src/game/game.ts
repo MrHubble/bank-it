@@ -17,6 +17,7 @@ import { AimView } from "../render/aim.ts";
 import { BallView } from "../render/ball.ts";
 import { Effects, type CaptionTone } from "../render/effects.ts";
 import { Kid } from "../render/kid.ts";
+import { disposeTree } from "../render/materials.ts";
 import { createPropView } from "../render/props/index.ts";
 import type { PropView } from "../render/props/types.ts";
 import { Scenery } from "../render/scenery.ts";
@@ -97,6 +98,8 @@ export class Game {
   private reducedMotion = false;
   private missCount = 0;
   private metCount = 0;
+  /** Test hook: a shot to release on an exact tick of the current attempt. */
+  private queued: { aim: Aim; tick: number } | null = null;
 
   constructor(R: Rapier) {
     this.R = R;
@@ -223,6 +226,19 @@ export class Game {
       }),
       setAim: (a: Aim) => this.setAim(a, false),
       shoot: () => this.shoot(),
+      /** Release a shot on an exact tick of the current attempt (restarts the attempt if that tick has passed). */
+      queueShot: (aim: Aim, tick: number) => {
+        if (this.phase === "ready" && this.phaseTick > tick) this.newAttempt();
+        this.queued = { aim, tick };
+      },
+      lastRelease: () => this.shot?.setup.releaseTick ?? null,
+      audio: () => this.sound.state,
+      challenges: () => CHALLENGES.map((c) => ({ id: c.id, number: c.number, title: c.title, solution: c.solution })),
+      memory: () => {
+        let objects = 0;
+        this.stage.scene.traverse(() => objects++);
+        return { ...this.stage.renderer.info.memory, objects, canvases: document.querySelectorAll("canvas").length };
+      },
       retry: () => this.retry(),
       startFreestyle: (id: string) => this.startFreestyle(id),
       startChallenge: (id: string) => this.startChallenge(id),
@@ -265,13 +281,14 @@ export class Game {
     if (!same) {
       for (const v of this.propViews) {
         this.propGroup.remove(v.object);
-        v.object.traverse((o) => (o as THREE.Mesh).geometry?.dispose());
+        disposeTree(v.object);
       }
       this.layout = layout;
       this.propViews = layout.props.map((d) => createPropView(d, layout));
       for (const v of this.propViews) this.propGroup.add(v.object);
       this.scenery.setDecor(layout.decor);
       this.stage.scene.remove(this.kid.object);
+      disposeTree(this.kid.object);
       this.kid = new Kid(layout.launch);
       this.stage.scene.add(this.kid.object);
       this.probe = new PreviewProbe(this.R, layout);
@@ -291,6 +308,7 @@ export class Game {
 
   private newAttempt(): void {
     this.disposeShot();
+    this.fx.clear();
     this.phase = "ready";
     this.phaseTick = 0;
     this.birdHitAt = -1;
@@ -314,7 +332,7 @@ export class Game {
   private readyHint(): string {
     if (this.mode?.kind === "challenge") return this.mode.def.hint;
     const touch = window.matchMedia("(pointer: coarse)").matches;
-    return touch ? "Drag back from the ball, then let go." : "Drag back from the ball and let go · or ← → ↑ ↓ and Space";
+    return touch ? "Drag back from the ball, then let go." : "Drag back from the ball, let go to shoot · or arrows + Space";
   }
 
   private shoot(): void {
@@ -417,6 +435,13 @@ export class Game {
     this.simTime += DT;
     if (this.overlay.open) return;
     if (this.phase === "ready") {
+      const q = this.queued;
+      if (q && this.phaseTick >= q.tick) {
+        this.queued = null;
+        this.setAim(q.aim, false);
+        this.shoot();
+        return;
+      }
       this.phaseTick += 1;
       return;
     }
@@ -470,9 +495,31 @@ export class Game {
     if (this.phase === "flying" && !this.log.scored) {
       this.hud.setChain(this.log.distinct.map(this.label), "flying", this.log.distinct.length ? scoreChain(this.log) : null);
     }
+    this.updateOffscreen();
     this.fx.update(dt);
     this.scenery.update(dt, this.reducedMotion);
     this.stage.render(this.fx.shakeOffset());
+  }
+
+  private readonly offscreen = document.getElementById("offscreen")!;
+  /** Point at the ball when a big arc takes it above the top of the view. */
+  private updateOffscreen(): void {
+    const el = this.offscreen;
+    if (!this.shot || this.phase === "ready" || this.halted) {
+      el.hidden = true;
+      return;
+    }
+    const p = this.currBall;
+    const s = this.stage.camera.toScreen(p.x, p.y, this.stage.width, this.stage.height);
+    const top = this.insets.top + 4;
+    if (s.y > top - 10) {
+      el.hidden = true;
+      return;
+    }
+    el.hidden = false;
+    el.style.left = `${Math.max(20, Math.min(this.stage.width - 20, s.x))}px`;
+    el.style.top = `${top}px`;
+    (el.lastElementChild as HTMLElement).textContent = `${p.y.toFixed(1)} m`;
   }
 
   // --------------------------------------------------------------- events
@@ -485,16 +532,16 @@ export class Game {
         break;
       case "boost":
         this.sound.boing(e.speed / 13);
-        this.fx.caption("BOING!", { x: e.point.x, y: e.point.y + 0.9 }, "boing", "md");
+        if (this.phase === "flying") this.fx.caption("BOING!", { x: e.point.x, y: e.point.y + 0.9 }, "boing", "md");
         break;
       case "fold":
         this.sound.fold();
-        this.fx.caption("FWUMP!", this.anchorOf(e.objectId), "brolly", "md");
+        if (this.phase === "flying") this.fx.caption("FWUMP!", this.anchorOf(e.objectId), "brolly", "md");
         break;
       case "bird-hit":
         this.sound.squawk();
         this.birdHitAt = this.simTime;
-        this.fx.caption("SQUAWK!", { x: e.point.x, y: e.point.y + 0.8 }, "bird", "lg");
+        if (this.phase === "flying") this.fx.caption("SQUAWK!", { x: e.point.x, y: e.point.y + 0.8 }, "bird", "lg");
         break;
       case "basket":
         this.onBasket(e.swish);

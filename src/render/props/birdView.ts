@@ -225,6 +225,10 @@ export const birdView: PropViewFactory<BirdDef> = {
         flap(16, 0.7);
       },
       reset() {
+        if (hitAt >= 0 && fx) {
+          const p0 = birdPosition(def.path, 0);
+          fx.burst("feather", p0, { count: 4, speed: 1.2, colors: ["#ffffff", "#e8edf2"], size: 0.1, life: 0.7, gravity: -0.8, drag: 2, sway: 0.6 });
+        }
         hitAt = -1;
         t = 0;
         brow.visible = false;

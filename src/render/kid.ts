@@ -44,66 +44,86 @@ export class Kid {
     const shorts = toon("#2b3a67");
     const cap = toon("#6ec3ff");
     const shoe = toon("#fbfbf8");
+    const ink = toon("#161513");
     this.object.position.set(launch.x - 0.62, 0, -0.5);
     this.object.name = "kid";
-    // Legs and shoes.
-    for (const z of [0.09, -0.09]) {
-      const leg = part(new THREE.CylinderGeometry(0.055, 0.05, 0.5, 8), skin, { outline: 0.018 });
-      leg.position.set(0, 0.3, z);
-      const sh = part(new THREE.BoxGeometry(0.24, 0.09, 0.12), shoe, { outline: 0.018 });
-      sh.position.set(0.05, 0.05, z);
-      const stripe = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.025, 0.125), toon("#e4432d"));
-      stripe.position.set(0.05, 0.06, z);
-      this.object.add(leg, sh, stripe);
+    // Legs and chunky sneakers.
+    for (const z of [0.1, -0.1]) {
+      const leg = part(new THREE.CylinderGeometry(0.07, 0.062, 0.46, 10), skin, { outline: 0.02 });
+      leg.position.set(0, 0.32, z);
+      const sh = part(new THREE.CapsuleGeometry(0.075, 0.16, 4, 10), shoe, { outline: 0.02 });
+      sh.rotation.z = Math.PI / 2;
+      sh.position.set(0.06, 0.075, z);
+      const stripe = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.035, 0.155), toon("#e4432d"));
+      stripe.position.set(0.05, 0.09, z);
+      const sock = new THREE.Mesh(new THREE.CylinderGeometry(0.066, 0.066, 0.08, 10), toon("#fbf8f0"));
+      sock.position.set(0, 0.17, z);
+      this.object.add(leg, sh, stripe, sock);
     }
-    this.hips.position.set(0, 0.55, 0);
+    this.hips.position.set(0, 0.56, 0);
     this.object.add(this.hips);
-    const sh = part(new THREE.CylinderGeometry(0.17, 0.16, 0.2, 12), shorts, { outline: 0.02 });
-    sh.position.y = 0.04;
+    const sh = part(new THREE.CylinderGeometry(0.2, 0.19, 0.24, 14), shorts, { outline: 0.022 });
+    sh.position.y = 0.02;
     this.hips.add(sh);
     this.chest.position.y = 0.12;
     this.hips.add(this.chest);
-    const torso = part(new THREE.CapsuleGeometry(0.16, 0.22, 4, 12), tee, { outline: 0.022 });
+    const torso = part(new THREE.CapsuleGeometry(0.19, 0.2, 4, 14), tee, { outline: 0.024 });
     torso.position.y = 0.2;
     this.chest.add(torso);
-    const number = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.12, 0.02), toon("#fbf8f0"));
-    number.position.set(0.02, 0.24, 0.16);
-    this.chest.add(number);
+    // Race-plate number on the tee.
+    const plate = new THREE.Mesh(new THREE.CircleGeometry(0.085, 16), toon("#fbf8f0"));
+    plate.position.set(0.05, 0.22, 0.19);
+    this.chest.add(plate);
     this.headPivot.position.set(0.02, 0.5, 0);
     this.chest.add(this.headPivot);
-    const head = part(new THREE.SphereGeometry(0.19, 16, 12), skin, { outline: 0.022 });
-    head.position.y = 0.16;
+    const head = part(new THREE.SphereGeometry(0.22, 18, 14), skin, { outline: 0.024 });
+    head.position.y = 0.17;
     this.headPivot.add(head);
-    const capTop = part(new THREE.SphereGeometry(0.2, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), cap, { outline: 0.02 });
-    capTop.position.y = 0.2;
-    capTop.rotation.z = 0.12;
+    const hair = new THREE.Mesh(new THREE.SphereGeometry(0.08, 10, 8), toon("#6b4226"));
+    hair.scale.set(1.2, 0.6, 1.6);
+    hair.position.set(0.14, 0.3, 0.02);
+    this.headPivot.add(hair);
+    const capTop = part(new THREE.SphereGeometry(0.228, 18, 8, 0, Math.PI * 2, 0, Math.PI / 2), cap, { outline: 0.022 });
+    capTop.position.y = 0.21;
+    capTop.rotation.z = 0.14;
     this.headPivot.add(capTop);
-    const brim = part(new THREE.BoxGeometry(0.2, 0.03, 0.22), cap, { outline: 0.015 });
-    brim.position.set(-0.22, 0.22, 0);
+    const brim = part(new THREE.BoxGeometry(0.22, 0.035, 0.24), cap, { outline: 0.016 });
+    brim.position.set(-0.25, 0.23, 0);
+    brim.rotation.z = -0.12;
     this.headPivot.add(brim);
-    const eye = new THREE.Mesh(new THREE.SphereGeometry(0.028, 8, 8), toon("#161513"));
-    eye.position.set(0.13, 0.19, 0.12);
-    const nose = new THREE.Mesh(new THREE.SphereGeometry(0.035, 8, 8), skin);
-    nose.position.set(0.19, 0.14, 0.02);
-    const smile = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.012, 4, 10, Math.PI), toon("#161513"));
-    smile.position.set(0.14, 0.08, 0.1);
+    const eye = new THREE.Mesh(new THREE.SphereGeometry(0.034, 10, 10), ink);
+    eye.scale.set(0.8, 1.2, 0.6);
+    eye.position.set(0.15, 0.2, 0.15);
+    const brow = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.018, 0.02), toon("#6b4226"));
+    brow.position.set(0.15, 0.27, 0.16);
+    brow.rotation.z = 0.15;
+    const nose = new THREE.Mesh(new THREE.SphereGeometry(0.04, 8, 8), skin);
+    nose.position.set(0.215, 0.15, 0.03);
+    const cheek = new THREE.Mesh(new THREE.CircleGeometry(0.035, 12), toon("#f59aa8"));
+    cheek.position.set(0.11, 0.11, 0.19);
+    cheek.rotation.y = 0.5;
+    const smile = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.013, 4, 12, Math.PI), ink);
+    smile.position.set(0.16, 0.08, 0.12);
     smile.rotation.set(0, 0.6, Math.PI);
-    this.headPivot.add(eye, nose, smile);
-    // Arms: shoulder pivots with a forearm each.
+    this.headPivot.add(eye, brow, nose, cheek, smile);
+    // Arms: shoulder pivots with a forearm and hand each.
     const makeArm = (pivot: THREE.Group, fore: THREE.Group, z: number) => {
       pivot.position.set(0.02, 0.4, z);
-      const upper = part(new THREE.CapsuleGeometry(0.045, 0.18, 4, 8), tee, { outline: 0.016 });
+      const upper = part(new THREE.CapsuleGeometry(0.06, 0.16, 4, 10), tee, { outline: 0.018 });
       upper.position.y = -0.12;
       pivot.add(upper);
-      fore.position.y = -0.24;
+      fore.position.y = -0.25;
       pivot.add(fore);
-      const lower = part(new THREE.CapsuleGeometry(0.04, 0.17, 4, 8), skin, { outline: 0.016 });
-      lower.position.y = -0.11;
+      const lower = part(new THREE.CapsuleGeometry(0.05, 0.15, 4, 10), skin, { outline: 0.018 });
+      lower.position.y = -0.1;
       fore.add(lower);
+      const hand = part(new THREE.SphereGeometry(0.06, 10, 8), skin, { outline: 0.016 });
+      hand.position.y = -0.21;
+      fore.add(hand);
       this.chest.add(pivot);
     };
-    makeArm(this.armL, this.foreL, -0.2);
-    makeArm(this.armR, this.foreR, 0.2);
+    makeArm(this.armL, this.foreL, -0.24);
+    makeArm(this.armR, this.foreR, 0.24);
   }
 
   setPose(p: KidPose): void {

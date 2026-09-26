@@ -21,7 +21,8 @@ function profile(u: UmbrellaDef, k: number): THREE.Vector2[] {
     const closedY = 0.34 - s * (u.canopyRadius * 0.95);
     pts.push(new THREE.Vector2(openR + (closedR - openR) * k, openY + (closedY - openY) * k));
   }
-  return pts;
+  // Rim first, tip last, so the lathe's normals face outwards.
+  return pts.reverse();
 }
 
 /** Striped patio umbrella. One bounce, then it folds shut and stays inactive. */
@@ -44,7 +45,7 @@ export const umbrellaView: PropViewFactory<UmbrellaDef> = {
 
     const colors = def.colors.map((c) => new THREE.Color(c));
     const faded = colors.map((c) => c.clone().lerp(new THREE.Color("#9aa3ab"), 0.65));
-    const mats = colors.map((c) => toonUnique(c, { side: THREE.DoubleSide }));
+    const mats = colors.map((c) => toonUnique(c, { side: THREE.DoubleSide, shadowSide: THREE.FrontSide }));
     const gores: THREE.Mesh[] = [];
     const build = (k: number) => {
       for (let i = 0; i < GORES; i++) {

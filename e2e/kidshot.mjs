@@ -1,0 +1,12 @@
+import { launch } from "./harness.mjs";
+const out = process.argv[2] ?? "/tmp";
+const browser = await launch();
+const page = await (await browser.newContext({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 })).newPage();
+await page.goto("http://localhost:4311/");
+await page.waitForFunction(() => !!window.bankIt, null, { timeout: 30000 });
+await page.evaluate(() => window.bankIt.startFreestyle("air-mail"));
+await page.waitForTimeout(600);
+await page.screenshot({ path: `${out}/k-full.png` });
+const k = await page.evaluate(() => window.bankIt.toScreen(2.5, 1.0));
+await page.screenshot({ path: `${out}/k-zoom.png`, clip: { x: k.x - 160, y: k.y - 160, width: 320, height: 260 } });
+await browser.close();

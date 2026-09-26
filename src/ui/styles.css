@@ -396,6 +396,8 @@ button:disabled {
   border: 3px solid var(--ink);
   border-radius: 8px;
   box-shadow: 3px 3px 0 var(--ink);
+}
+.link--new {
   animation: link-pop 0.28s cubic-bezier(0.2, 1.6, 0.4, 1) both;
 }
 .chain--lv2 .link {
@@ -482,7 +484,7 @@ button:disabled {
   border: 2px solid var(--ink);
   border-radius: 8px;
   padding: 5px 9px 4px;
-  max-width: min(52ch, 40vw);
+  max-width: min(64ch, 46vw);
   flex-shrink: 1;
 }
 .hint:empty {
@@ -577,6 +579,38 @@ button:disabled {
   stroke-width: 2.6;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+/* Marker for a ball that has gone above the top of the view. */
+.offscreen {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+.offscreen[hidden] {
+  display: none;
+}
+.offscreen svg {
+  width: 26px;
+  height: 26px;
+  fill: var(--orange);
+  stroke: var(--ink);
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+}
+.offscreen span {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 11px;
+  background: var(--ink);
+  color: var(--sheet);
+  padding: 1px 5px 0;
+  border-radius: 4px;
 }
 
 /* ----------------------------------------------------------- captions */

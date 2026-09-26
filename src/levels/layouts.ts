@@ -66,7 +66,83 @@ export const BIN_THERE: LayoutDef = {
   decor: [],
 };
 
-export const LAYOUTS: LayoutDef[] = [BIN_THERE];
+export const AIR_MAIL: LayoutDef = {
+  id: "air-mail",
+  number: "02",
+  name: "Air Mail",
+  tagline: "Big air off the trampoline. The brolly sends it back.",
+  launch: { x: 3.0, y: 1.5 },
+  defaultAim: { angleTenths: 560, powerTenths: 600 },
+  props: [
+    HOOP,
+    GARAGE,
+    GARAGE_ROOF,
+    {
+      type: "trampoline",
+      id: "trampoline",
+      label: "Trampoline",
+      x: 7.2,
+      width: 2.0,
+      height: 0.8,
+    },
+    {
+      type: "umbrella",
+      id: "umbrella",
+      label: "Umbrella",
+      x: 10.2,
+      poleHeight: 2.3,
+      canopyRadius: 1.15,
+      canopyDrop: 0.5,
+      tilt: 10,
+      colors: ["#e4432d", "#fbf8f0"],
+    },
+  ],
+  decor: [],
+};
+
+export const FLIGHT_RISK: LayoutDef = {
+  id: "flight-risk",
+  number: "03",
+  name: "Flight Risk",
+  tagline: "A seagull on patrol. Time it, clip it, bank it.",
+  launch: { x: 3.0, y: 1.5 },
+  defaultAim: { angleTenths: 520, powerTenths: 680 },
+  props: [
+    HOOP,
+    GARAGE,
+    GARAGE_ROOF,
+    {
+      type: "trampoline",
+      id: "trampoline",
+      label: "Trampoline",
+      x: 6.4,
+      width: 2.0,
+      height: 0.8,
+    },
+    {
+      type: "bin",
+      id: "bin",
+      label: "Bin",
+      x: 9.8,
+      width: 0.72,
+      height: 1.02,
+      lidTilt: 8,
+      lidRise: "left",
+      body: "#2f7d4f",
+      lid: "#e04a3a",
+    },
+    {
+      type: "bird",
+      id: "gull",
+      label: "Seagull",
+      radius: 0.42,
+      path: { x0: 5.4, x1: 12.2, y: 5.3, bob: 0.18, period: 600, start: 0.1 },
+    },
+  ],
+  decor: [],
+};
+
+export const LAYOUTS: LayoutDef[] = [BIN_THERE, AIR_MAIL, FLIGHT_RISK];
 
 export function layoutById(id: string): LayoutDef {
   const l = LAYOUTS.find((x) => x.id === id);

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import type { DecorDef } from "../props/defs.ts";
 import { OBLIQUE } from "./camera.ts";
-import { toon } from "./materials.ts";
+import { toon, toonUnique } from "./materials.ts";
 import { GARAGE_Z_BACK, GARAGE_Z_FRONT } from "./props/garageView.ts";
 
 // The driveway set: sky, clouds, fence, lawn, footpath and kerb. None of it
@@ -16,6 +16,35 @@ const KY = OBLIQUE.ky;
 /** World position that appears at play-plane (x, y) on screen when placed at depth z. */
 function atDepth(x: number, y: number, z: number): THREE.Vector3 {
   return new THREE.Vector3(x - KX * z, y + KY * z, z);
+}
+
+/** Warm concrete: faint speckle and a little tonal drift, tiled. */
+function concreteTexture(): THREE.CanvasTexture {
+  const c = document.createElement("canvas");
+  c.width = 256;
+  c.height = 256;
+  const g = c.getContext("2d")!;
+  g.fillStyle = "#ffffff";
+  g.fillRect(0, 0, 256, 256);
+  let seed = 11;
+  const rnd = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+  for (let i = 0; i < 40; i++) {
+    g.fillStyle = `rgba(150,120,80,${0.03 + rnd() * 0.04})`;
+    g.beginPath();
+    g.arc(rnd() * 256, rnd() * 256, 10 + rnd() * 40, 0, Math.PI * 2);
+    g.fill();
+  }
+  for (let i = 0; i < 1800; i++) {
+    const d = rnd();
+    g.fillStyle = d < 0.5 ? `rgba(90,70,50,${0.1 + rnd() * 0.12})` : `rgba(255,255,255,${0.2 + rnd() * 0.3})`;
+    g.fillRect(rnd() * 256, rnd() * 256, 1 + rnd() * 1.5, 1 + rnd() * 1.5);
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(4, 2);
+  return tex;
 }
 
 export function skyTexture(): THREE.CanvasTexture {
@@ -90,7 +119,8 @@ export class Scenery {
       o.add(m);
       return m;
     };
-    slab(1.35, 14.4, FENCE_Z, GARAGE_Z_FRONT + 0.1, "#e0d3bb", 0.004);
+    const drive = slab(1.35, 14.4, FENCE_Z, GARAGE_Z_FRONT + 0.1, "#e0d3bb", 0.004);
+    drive.material = toonUnique("#e3d6be", { map: concreteTexture() });
     slab(-8, -0.25, FENCE_Z - 0.3, 8, "#6d6e74", -0.02);
     slab(-0.25, -0.05, FENCE_Z - 0.3, 8, "#cfd2d6", 0.02);
     slab(0.35, 1.35, FENCE_Z - 0.3, 8, "#ebe3d3", 0.002);

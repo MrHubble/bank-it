@@ -20,6 +20,8 @@ function toonGradient(): THREE.DataTexture {
 }
 
 const toonCache = new Map<string, THREE.MeshToonMaterial>();
+/** Materials reused across layouts; never disposed. */
+const shared = new WeakSet<THREE.Material>();
 
 /** Shared toon material for a colour. Don't mutate shared ones; use toonUnique. */
 export function toon(color: THREE.ColorRepresentation): THREE.MeshToonMaterial {
@@ -28,6 +30,7 @@ export function toon(color: THREE.ColorRepresentation): THREE.MeshToonMaterial {
   if (!m) {
     m = new THREE.MeshToonMaterial({ color, gradientMap: toonGradient() });
     toonCache.set(key, m);
+    shared.add(m);
   }
   return m;
 }
@@ -55,6 +58,7 @@ function outlineMaterial(thickness: number): THREE.MeshBasicMaterial {
   };
   m.customProgramCacheKey = () => `outline-${thickness}`;
   outlineMaterials.set(thickness, m);
+  shared.add(m);
   return m;
 }
 
@@ -112,10 +116,17 @@ export function extrudeOutline(points: { x: number; y: number }[], depth: number
   return g;
 }
 
-/** Dispose every geometry and non-shared material under an object. */
+/** Dispose every geometry, texture and per-view material under an object.
+ * Shared (cached) toon and outline materials are kept for the next layout. */
 export function disposeTree(root: THREE.Object3D): void {
   root.traverse((o) => {
     const mesh = o as THREE.Mesh;
-    if (mesh.geometry) mesh.geometry.dispose();
+    mesh.geometry?.dispose();
+    const mats = Array.isArray(mesh.material) ? mesh.material : mesh.material ? [mesh.material] : [];
+    for (const m of mats) {
+      if (shared.has(m)) continue;
+      (m as THREE.MeshBasicMaterial).map?.dispose();
+      m.dispose();
+    }
   });
 }
