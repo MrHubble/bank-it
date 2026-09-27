@@ -2,7 +2,7 @@
 
 **Take the scenic route.** A trick-shot basketball game for [LeoToby](https://www.leotoby.com): bank a basketball off the garage roof, the wheelie bin, a trampoline, a garden umbrella and the odd passing seagull, then drop it through an oversized hoop above the garage door.
 
-It plays at [leotoby.com/games/bank-it/](https://www.leotoby.com/games/bank-it/). This repository is the editable source; the LeoToby site only holds a built copy (see [Publishing to LeoToby](#publishing-to-leotoby)).
+It plays at [bank-it.leotoby.com](https://bank-it.leotoby.com/). This repository is the editable source and deploys directly to its own Cloudflare Pages project. The LeoToby homepage links to it.
 
 ## How it plays
 
@@ -110,22 +110,8 @@ They use Playwright from a global install or `npx playwright`, with its bundled 
 
 Every Called Shot records a verified solution (launch position, angle, power and release tick) in `src/levels/challenges.ts`. `tests/solutions.test.ts` replays them all, and [SOLUTIONS.md](SOLUTIONS.md) lists them with how forgiving each one is.
 
-## Publishing to LeoToby
+## Publishing
 
-The LeoToby site serves a static copy of this game at `/games/bank-it/`. To update it:
+The `bank-it` Cloudflare Pages project is connected to this repository. Its production branch is `main`, its build command is `npm run build`, and its output directory is `dist`. Cloudflare installs dependencies and builds on each push. The Vite build uses `/` as its asset base, because the game is served at the root of its own domain.
 
-1. Build with the LeoToby base path:
-
-   ```bash
-   npm run build:leotoby      # writes dist-leotoby/ with /games/bank-it/ asset URLs
-   ```
-
-2. Replace the copy in the LeoToby repository (a sibling checkout of [MrHubble/leotoby](https://github.com/MrHubble/leotoby)):
-
-   ```bash
-   npm run copy:leotoby -- ../leotoby     # empties public/games/bank-it/ and copies dist-leotoby/ in
-   ```
-
-3. Commit both repositories. Cloudflare Pages rebuilds leotoby.com from the LeoToby repository.
-
-Keep the `/games/bank-it/` base: the built `index.html` loads its scripts, styles and fonts from that path.
+Run `npm test` and `npm run build` before pushing a change. After the production deployment, open [bank-it.leotoby.com](https://bank-it.leotoby.com/) and check that the game starts and its scripts, fonts, and images load. The [LeoToby hosting guide](https://github.com/MrHubble/leotoby/blob/main/docs/hosting.md) records how the homepage links to this game and how old `/games/bank-it/` URLs redirect here. Do not copy a build into the LeoToby repository.

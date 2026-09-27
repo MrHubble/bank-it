@@ -7,11 +7,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "build:leotoby": "tsc --noEmit && vite build --base=/games/bank-it/ --outDir dist-leotoby --emptyOutDir",
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "copy:leotoby": "node scripts/copy-to-leotoby.mjs",
     "sweep": "node scripts/sweep.ts",
     "solutions": "node scripts/solutions.ts"
   },
