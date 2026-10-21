@@ -1243,3 +1243,7 @@ button:disabled {
 
 /* Aim/HUD fingers belong to play; menus retain browser zoom and scrolling. */
 body.game-playing { touch-action: none; }
+
+html,body,#boot,#overlay,.panel,.ch-list {touch-action:pan-y;}
+body.game-playing {touch-action:none;}
+html.page-zoomed,html.page-zoomed body,html.page-zoomed body * {touch-action:pan-x pan-y pinch-zoom !important;}

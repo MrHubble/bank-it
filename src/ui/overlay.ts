@@ -54,14 +54,34 @@ export class Overlay {
   constructor(el: HTMLElement, onAction: (action: string, id?: string) => void) {
     this.el = el;
     this.onAction = onAction;
+    const invoke = (b: HTMLButtonElement) => {
+      if ((window.visualViewport?.scale ?? 1) > 1.01) return;
+      const a = b.dataset.action!;
+      if (a === "back") this.goBack();
+      else this.onAction(a, b.dataset.id);
+    };
+    // A menu list may scroll from a button: activate only an unmoved release.
+    let press: {id:number;button:HTMLButtonElement;x:number;y:number;moved:boolean}|null = null;
+    el.addEventListener("pointerdown", e => {
+      const button = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-action]");
+      if (!button || button.disabled || e.button !== 0 || (window.visualViewport?.scale ?? 1) > 1.01) return;
+      press={id:e.pointerId,button,x:e.clientX,y:e.clientY,moved:false};
+    }, {signal:this.ac.signal});
+    el.addEventListener("pointermove", e => {
+      if (press?.id===e.pointerId && Math.hypot(e.clientX-press.x,e.clientY-press.y)>10) press.moved=true;
+    }, {signal:this.ac.signal});
+    el.addEventListener("pointerup", e => {
+      if (press?.id!==e.pointerId) return;
+      const accepted=press;press=null;
+      if (!accepted.moved && !accepted.button.disabled && (window.visualViewport?.scale ?? 1)<=1.01) {e.preventDefault();invoke(accepted.button);}
+    }, {signal:this.ac.signal});
+    el.addEventListener("pointercancel", () => {press=null;}, {signal:this.ac.signal});
     el.addEventListener(
       "click",
       (e) => {
         const b = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-action]");
-        if (!b || b.disabled) return;
-        const a = b.dataset.action!;
-        if (a === "back") this.goBack();
-        else this.onAction(a, b.dataset.id);
+        if (!b || b.disabled || e.detail > 0) return;
+        invoke(b);
       },
       { signal: this.ac.signal },
     );

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { Sound } from "../audio/sound.ts";
 import { AimInput } from "../input/aimInput.ts";
-import { bindGameTouchZoom } from "../input/gameTouchZoom.ts";
+import type { installPageTouchZoom } from "../input/pageTouchZoom.ts";
 import { CHALLENGES, type ChallengeDef, challengeById } from "../levels/challenges.ts";
 import { LAYOUTS, layoutById } from "../levels/layouts.ts";
 import { type LayoutDef, hoopCentre, hoopOf } from "../props/defs.ts";
@@ -78,7 +78,7 @@ export class Game {
   private layout: LayoutDef;
   private probe: PreviewProbe;
   private mode: Mode | null = null;
-  private readonly touchZoom: ReturnType<typeof bindGameTouchZoom>;
+  private readonly touchZoom: ReturnType<typeof installPageTouchZoom>;
   private phase: Phase = "idle";
   private aim: Aim;
   private dragging = false;
@@ -103,7 +103,8 @@ export class Game {
   /** Test hook: a shot to release on an exact tick of the current attempt. */
   private queued: { aim: Aim; tick: number } | null = null;
 
-  constructor(R: Rapier) {
+  constructor(R: Rapier, pageTouch: ReturnType<typeof installPageTouchZoom>) {
+    this.touchZoom = pageTouch;
     this.R = R;
     this.stage = new Stage(document.getElementById("stage")!);
     this.fx = new Effects(this.stage.camera, document.getElementById("captions")!);
@@ -147,17 +148,12 @@ export class Game {
       },
       () => Math.max(110, Math.min(260, Math.min(this.stage.width, this.stage.height) * 0.34)),
     );
-    this.touchZoom = bindGameTouchZoom({
-      surface: window,
-      isPlaying: () => !!this.mode && this.phase !== 'idle' && !this.overlay.open && !document.hidden,
-      isGameTarget: target => target instanceof Element && !target.closest('#overlay'),
-      isDirectControl: target => target instanceof Element && (!target.closest('button') || !!target.closest('#hud button')),
-    });
+
     // Tap during a celebration or miss to skip straight to the next shot.
     this.stage.renderer.domElement.addEventListener(
       "pointerdown",
       () => {
-        if (this.phase === "resolving" && this.resolveTimer < this.resolveLength - 0.35) this.advance();
+        if (!this.overlay.open && !this.touchZoom.pageIsEnlarged() && this.phase === "resolving" && this.resolveTimer < this.resolveLength - 0.35) this.advance();
       },
       { signal: this.ac.signal },
     );
@@ -177,7 +173,6 @@ export class Game {
     document.addEventListener(
       "visibilitychange",
       () => {
-        this.touchZoom.clear();
         if (document.hidden) {
           this.input.cancel();
           this.loop.stop();
@@ -265,6 +260,7 @@ export class Game {
   // ---------------------------------------------------------------- modes
 
   private startFreestyle(layoutId: string): void {
+    if (this.touchZoom.pageIsEnlarged()) return;
     const layout = layoutById(layoutId);
     this.setLayout(layout);
     this.mode = { kind: "freestyle", layout, shotsLeft: SHOTS_PER_ROUND, score: 0, baskets: 0, bestShot: 0, bestChain: null, bestChainScore: 0 };
@@ -273,6 +269,7 @@ export class Game {
   }
 
   private startChallenge(id: string): void {
+    if (this.touchZoom.pageIsEnlarged()) return;
     const def = challengeById(id) ?? CHALLENGES[0];
     const layout = layoutById(def.layoutId);
     this.setLayout(layout);
@@ -321,7 +318,6 @@ export class Game {
   // ------------------------------------------------------------- attempts
 
   private newAttempt(): void {
-    this.touchZoom.clear();
     this.disposeShot();
     this.fx.clear();
     this.phase = "ready";
@@ -823,11 +819,9 @@ export class Game {
     };
   }
 
-  private syncTouchZoom(): void {
-    const active = !!this.mode && this.phase !== 'idle' && !this.overlay.open && !document.hidden;
-    document.body.classList.toggle('game-playing', active);
-    if (!active) this.touchZoom.clear();
-  }
+  get activelyPlayingForPageZoom(): boolean { return !!this.mode && this.phase !== 'idle' && !this.overlay.open && !document.hidden; }
+  pauseForPageZoom(): void { if (this.activelyPlayingForPageZoom) this.openPause(); }
+  private syncTouchZoom(): void { this.touchZoom.sync(); }
 
   private showScreen(screen: Screen, from: Screen | null = null, extra: Partial<OverlayModel> = {}): void {
     this.input.cancel();
@@ -886,6 +880,7 @@ export class Game {
         break;
       }
       case "close":
+        if (this.touchZoom.pageIsEnlarged()) break;
         if (this.mode && this.phase !== "idle") { this.overlay.hide(); this.syncTouchZoom(); }
         else if (!this.mode) this.showScreen("title");
         break;

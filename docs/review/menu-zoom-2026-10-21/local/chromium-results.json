@@ -1,0 +1,1274 @@
+{
+  "date": "2026-10-21T03:42:03.942Z",
+  "game": "bank-it",
+  "engine": "chromium",
+  "browser": "156.0.8078.47",
+  "base": "http://127.0.0.1:51317/",
+  "method": "Installed Chrome native CDP touch/pinch; Playwright WebKit trusted taps plus separate synthetic legacy policy; controlled browser clock for real result simulation; DPR 1 emulation; no physical iPad or performance claim",
+  "results": [
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: native challenge-menu swipe scrolls without selecting a row",
+      "detail": {
+        "before": 0,
+        "after": 282
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: initial menu keeps vertical scroll policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: native intro/build pinch keeps page scale 1",
+      "detail": {
+        "scale": 1,
+        "touchAction": "pan-y",
+        "active": false,
+        "enlarged": false,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: active play protects page gestures"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: native active-play pinch keeps page scale 1",
+      "detail": {
+        "scale": 1,
+        "touchAction": "none",
+        "active": true,
+        "enlarged": false,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: separate synthetic legacy ownership policy",
+      "detail": {
+        "second": true,
+        "move": true,
+        "owned": true,
+        "desktop": false,
+        "wheel": false
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: actual first touch remains held through menu transition",
+      "detail": {
+        "type": "touchend",
+        "ids": [
+          11
+        ]
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: menu transition retains browser gesture ownership"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: paused/build menu has vertical scroll policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: second-finger Resume/ride remains pointer-safe"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: trusted rapid controls do not zoom"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: enlarged page latches simulation pause",
+      "detail": {
+        "phase": "ready",
+        "overlay": "pause",
+        "aim": {
+          "angleTenths": 0,
+          "powerTenths": 531
+        },
+        "phaseTick": 12,
+        "mode": {
+          "kind": "freestyle",
+          "layout": "bin-there",
+          "shotsLeft": 9,
+          "score": 0,
+          "baskets": 0,
+          "bestShot": 0,
+          "bestChain": null,
+          "bestChainScore": 0
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": false,
+          "swish": false
+        },
+        "ball": {
+          "x": 3,
+          "y": 1.5
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 23.353293413173652,
+        "insets": {
+          "top": 107,
+          "right": 0,
+          "bottom": 149,
+          "left": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: enlarged recovery admits native pinch on descendants"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: enlarged Resume cannot restart play"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: native inverse pinch recovers scale 1 and stays paused"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: native recovered play pinch keeps page scale 1",
+      "detail": {
+        "scale": 1,
+        "touchAction": "none",
+        "active": true,
+        "enlarged": false,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: native paused/build menu pinch keeps page scale 1",
+      "detail": {
+        "scale": 1,
+        "touchAction": "pan-y",
+        "active": false,
+        "enlarged": false,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: authored-aim fixture and actual Shoot reach physics result",
+      "detail": {
+        "phase": "idle",
+        "overlay": "complete",
+        "aim": {
+          "angleTenths": 614,
+          "powerTenths": 729
+        },
+        "phaseTick": 15,
+        "mode": {
+          "kind": "challenge",
+          "layout": "bin-there",
+          "attempts": 1,
+          "done": true
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": true,
+          "swish": true
+        },
+        "ball": {
+          "x": 8.592796325683594,
+          "y": 1.9569809436798096
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 23.353293413173652,
+        "insets": {
+          "top": 136,
+          "right": 0,
+          "bottom": 134,
+          "left": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: actual result restores vertical menu policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: native actual result pinch keeps page scale 1",
+      "detail": {
+        "scale": 1,
+        "touchAction": "pan-y",
+        "active": false,
+        "enlarged": false,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/390: result retains separate legacy pinch policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: initial menu keeps vertical scroll policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: native intro/build pinch keeps page scale 1",
+      "detail": {
+        "scale": 1,
+        "touchAction": "pan-y",
+        "active": false,
+        "enlarged": false,
+        "width": 820,
+        "height": 1180
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: active play protects page gestures"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: native active-play pinch keeps page scale 1",
+      "detail": {
+        "scale": 1,
+        "touchAction": "none",
+        "active": true,
+        "enlarged": false,
+        "width": 820,
+        "height": 1180
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: separate synthetic legacy ownership policy",
+      "detail": {
+        "second": true,
+        "move": true,
+        "owned": true,
+        "desktop": false,
+        "wheel": false
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: actual first touch remains held through menu transition",
+      "detail": {
+        "type": "touchend",
+        "ids": [
+          11
+        ]
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: menu transition retains browser gesture ownership"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: paused/build menu has vertical scroll policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: second-finger Resume/ride remains pointer-safe"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: trusted rapid controls do not zoom"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: enlarged page latches simulation pause",
+      "detail": {
+        "phase": "ready",
+        "overlay": "pause",
+        "aim": {
+          "angleTenths": 0,
+          "powerTenths": 256
+        },
+        "phaseTick": 14,
+        "mode": {
+          "kind": "freestyle",
+          "layout": "bin-there",
+          "shotsLeft": 9,
+          "score": 0,
+          "baskets": 0,
+          "bestShot": 0,
+          "bestChain": null,
+          "bestChainScore": 0
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": false,
+          "swish": false
+        },
+        "ball": {
+          "x": 3,
+          "y": 1.5
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 49.10179640718563,
+        "insets": {
+          "top": 63,
+          "right": 0,
+          "bottom": 54,
+          "left": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: enlarged recovery admits native pinch on descendants"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: enlarged Resume cannot restart play"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: native inverse pinch recovers scale 1 and stays paused"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: native recovered play pinch keeps page scale 1",
+      "detail": {
+        "scale": 1,
+        "touchAction": "none",
+        "active": true,
+        "enlarged": false,
+        "width": 820,
+        "height": 1180
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: native paused/build menu pinch keeps page scale 1",
+      "detail": {
+        "scale": 1,
+        "touchAction": "pan-y",
+        "active": false,
+        "enlarged": false,
+        "width": 820,
+        "height": 1180
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: authored-aim fixture and actual Shoot reach physics result",
+      "detail": {
+        "phase": "idle",
+        "overlay": "complete",
+        "aim": {
+          "angleTenths": 614,
+          "powerTenths": 729
+        },
+        "phaseTick": 15,
+        "mode": {
+          "kind": "challenge",
+          "layout": "bin-there",
+          "attempts": 1,
+          "done": true
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": true,
+          "swish": true
+        },
+        "ball": {
+          "x": 8.592796325683594,
+          "y": 1.9569809436798096
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 49.10179640718563,
+        "insets": {
+          "top": 92,
+          "right": 0,
+          "bottom": 54,
+          "left": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: actual result restores vertical menu policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: native actual result pinch keeps page scale 1",
+      "detail": {
+        "scale": 1,
+        "touchAction": "pan-y",
+        "active": false,
+        "enlarged": false,
+        "width": 820,
+        "height": 1180
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium/820: result retains separate legacy pinch policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium: desktop mouse/keyboard menus work"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium: desktop scale remains 1"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/chromium: no page exceptions",
+      "detail": []
+    }
+  ],
+  "observations": [
+    {
+      "label": "bank-it/chromium/390",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "final": {
+        "scale": 1,
+        "touchAction": "pan-y",
+        "active": false,
+        "enlarged": false,
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "phase": "idle",
+        "overlay": "complete",
+        "aim": {
+          "angleTenths": 614,
+          "powerTenths": 729
+        },
+        "phaseTick": 15,
+        "mode": {
+          "kind": "challenge",
+          "layout": "bin-there",
+          "attempts": 1,
+          "done": true
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": true,
+          "swish": true
+        },
+        "ball": {
+          "x": 8.592796325683594,
+          "y": 1.9569809436798096
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 23.353293413173652,
+        "insets": {
+          "top": 136,
+          "right": 0,
+          "bottom": 134,
+          "left": 0
+        }
+      },
+      "trustedTouchTrace": [
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            100
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            100,
+            101
+          ]
+        },
+        {
+          "type": "touchcancel",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            11
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            11,
+            12
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            11
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            11,
+            13
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            910
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            910,
+            911
+          ]
+        },
+        {
+          "type": "touchcancel",
+          "ids": []
+        }
+      ],
+      "physicalDevice": false
+    },
+    {
+      "label": "bank-it/chromium/820",
+      "viewport": {
+        "width": 820,
+        "height": 1180
+      },
+      "final": {
+        "scale": 1,
+        "touchAction": "pan-y",
+        "active": false,
+        "enlarged": false,
+        "width": 820,
+        "height": 1180
+      },
+      "state": {
+        "phase": "idle",
+        "overlay": "complete",
+        "aim": {
+          "angleTenths": 614,
+          "powerTenths": 729
+        },
+        "phaseTick": 15,
+        "mode": {
+          "kind": "challenge",
+          "layout": "bin-there",
+          "attempts": 1,
+          "done": true
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": true,
+          "swish": true
+        },
+        "ball": {
+          "x": 8.592796325683594,
+          "y": 1.9569809436798096
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 49.10179640718563,
+        "insets": {
+          "top": 92,
+          "right": 0,
+          "bottom": 54,
+          "left": 0
+        }
+      },
+      "trustedTouchTrace": [
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            100
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            100,
+            101
+          ]
+        },
+        {
+          "type": "touchcancel",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            11
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            11,
+            12
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            11
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            11,
+            13
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            910
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            910,
+            911
+          ]
+        },
+        {
+          "type": "touchcancel",
+          "ids": []
+        }
+      ],
+      "physicalDevice": false
+    }
+  ],
+  "errors": []
+}
