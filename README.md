@@ -116,6 +116,6 @@ The `bank-it` Cloudflare Pages project is connected to this repository. Its prod
 
 Run `npm test` and `npm run build` before pushing a change. After the production deployment, open [bank-it.leotoby.com](https://bank-it.leotoby.com/) and check that the game starts and its scripts, fonts, and images load. The [LeoToby hosting guide](https://github.com/MrHubble/leotoby/blob/main/docs/hosting.md) records how the homepage links to this game and how old `/games/bank-it/` URLs redirect here. Do not copy a build into the LeoToby repository.
 
-## Touch gestures during play
+## Touch gestures and enlarged-page recovery
 
-Active gameplay controls suppress accidental page pinch/double-tap zoom; menus restore ordinary browser gestures. Existing drag/camera controls and keyboard input remain. [Verification and device limits](docs/review/touch-zoom-2026-10-21/README.md).
+Loading, menus, results and play suppress accidental page pinch/double-tap zoom. Menus keep vertical scrolling and native form controls. An already enlarged page pauses the game and admits a native inverse pinch; returning to scale 1 stays paused until explicit Resume. Menu buttons ignore moved pinch/scroll releases, while gameplay controls keep immediate presses. [Current verification and device limits](docs/review/menu-zoom-2026-10-21/README.md); the earlier active-play-only evidence remains historical.

@@ -1,0 +1,63 @@
+{
+  "game": "bank-it",
+  "repo": "/private/tmp/menu-zoom-pages-bank-it-20261021",
+  "canonical": "https://bank-it.leotoby.com/",
+  "baseline": "d45f476a2d06cfec3874f6cc36e736309deb40ee",
+  "runtimeSHA": "bf7bd2f79f5cbebdb33290b7d90eba5ea934ecaa",
+  "docsSHA": null,
+  "checks": {
+    "unit": {
+      "passed": 61,
+      "total": 61
+    },
+    "build": "pass",
+    "browser": {
+      "local": {
+        "chromium": {
+          "passed": 44,
+          "total": 44,
+          "browser": "156.0.8078.47"
+        },
+        "webkit": {
+          "passed": 19,
+          "total": 19,
+          "browser": "27.2"
+        }
+      },
+      "production": {
+        "chromium": {
+          "passed": 50,
+          "total": 50,
+          "browser": "156.0.8078.47"
+        },
+        "webkit": {
+          "passed": 21,
+          "total": 21,
+          "browser": "27.2"
+        }
+      }
+    }
+  },
+  "deployment": {
+    "runtime": {
+      "conclusion": "success",
+      "details_url": "https://dash.cloudflare.com/?to=/fa68dcf0ffe51e98df8c91c47b5acf76/pages/view/bank-it/7d6eea73-13d8-46aa-b968-da250c5eb772",
+      "id": 119025890142,
+      "name": "Cloudflare Pages",
+      "status": "completed"
+    }
+  },
+  "assets": {
+    "checkedAt": "2026-10-21T03:46:25.708Z",
+    "matched": 13,
+    "total": 13,
+    "bytes": 4401403
+  },
+  "evidencePath": "docs/review/menu-zoom-2026-10-21",
+  "limitations": [
+    "Installed Chrome156 on macOS27.0.1 AppleM2 native CDP touch/pinch; phone390x844 and tablet820x1180 DPR1 emulation.",
+    "Playwright WebKit trusted taps/keyboard and separate synthetic legacy policy; no native WebKit multi-finger pinch automation or physical iPadSafari verification.",
+    "Controlled browser clock drives real end-of-round simulation; no performance measurements.",
+    "First challenge uses its authored aim fixture, then trusted Shoot and real physics to reach the result."
+  ]
+}

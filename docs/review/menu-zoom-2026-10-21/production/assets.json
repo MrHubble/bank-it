@@ -1,0 +1,111 @@
+{
+  "checkedAt": "2026-10-21T03:46:25.708Z",
+  "domain": "https://bank-it.leotoby.com/",
+  "commit": "bf7bd2f",
+  "results": [
+    {
+      "file": "assets/archivo-latin-wdth-italic-BuvkOFDm.woff2",
+      "status": 200,
+      "bytes": 101676,
+      "sha256": "d63de74ee5ad92cd506c8dd0f795e84bd084aea8eef90173b5d2464096c5fa4a",
+      "expectedSha256": "d63de74ee5ad92cd506c8dd0f795e84bd084aea8eef90173b5d2464096c5fa4a",
+      "match": true
+    },
+    {
+      "file": "assets/archivo-latin-wdth-normal-DY7AcnAa.woff2",
+      "status": 200,
+      "bytes": 90104,
+      "sha256": "e3a28eade21a900c7155a247757f4b2834c07bb7ef07ad7efa55cebaac1e8f5e",
+      "expectedSha256": "e3a28eade21a900c7155a247757f4b2834c07bb7ef07ad7efa55cebaac1e8f5e",
+      "match": true
+    },
+    {
+      "file": "assets/game-Cdp5NoHQ.js",
+      "status": 200,
+      "bytes": 680143,
+      "sha256": "22130dc693faa9b6b18ceabd30ad86bd44f48fd65de596f033d24e1c8f5d5cae",
+      "expectedSha256": "22130dc693faa9b6b18ceabd30ad86bd44f48fd65de596f033d24e1c8f5d5cae",
+      "match": true
+    },
+    {
+      "file": "assets/index-DsaxpvOb.css",
+      "status": 200,
+      "bytes": 19113,
+      "sha256": "e3f2bee6494573a76a9b1cb5a2a066012f34d5bc6a98ca5a43a4dd229b9cf5be",
+      "expectedSha256": "e3f2bee6494573a76a9b1cb5a2a066012f34d5bc6a98ca5a43a4dd229b9cf5be",
+      "match": true
+    },
+    {
+      "file": "assets/index-Io5gCH51.js",
+      "status": 200,
+      "bytes": 5037,
+      "sha256": "9334a04cf813d75439f6266c04837da3e3b14905db696ba50035fd05259145fa",
+      "expectedSha256": "9334a04cf813d75439f6266c04837da3e3b14905db696ba50035fd05259145fa",
+      "match": true
+    },
+    {
+      "file": "assets/rapier-QzNZ7ZNU.js",
+      "status": 200,
+      "bytes": 3446108,
+      "sha256": "c0567fe64b724b984e8742b44e3d853dba59b1515c3a348371f71539c7bb74cb",
+      "expectedSha256": "c0567fe64b724b984e8742b44e3d853dba59b1515c3a348371f71539c7bb74cb",
+      "match": true
+    },
+    {
+      "file": "assets/space-mono-latin-400-normal-Rg4St2Dn.woff2",
+      "status": 200,
+      "bytes": 16520,
+      "sha256": "fb4a81a2d0a893e5c38c394a7e716a1cef0b24610a0af49c96f6d529bd66bf2b",
+      "expectedSha256": "fb4a81a2d0a893e5c38c394a7e716a1cef0b24610a0af49c96f6d529bd66bf2b",
+      "match": true
+    },
+    {
+      "file": "assets/space-mono-latin-700-normal-mWgeinG7.woff2",
+      "status": 200,
+      "bytes": 16724,
+      "sha256": "2d46bd159b53f55c41167a4f1540a074649464194fd1e416f5b4694a6c0f282c",
+      "expectedSha256": "2d46bd159b53f55c41167a4f1540a074649464194fd1e416f5b4694a6c0f282c",
+      "match": true
+    },
+    {
+      "file": "index.html",
+      "status": 200,
+      "bytes": 4325,
+      "sha256": "6e077d8ab182cb2fdf83837767c033ca45c857fc7a415df819a8953b2361cbbc",
+      "expectedSha256": "6e077d8ab182cb2fdf83837767c033ca45c857fc7a415df819a8953b2361cbbc",
+      "match": true
+    },
+    {
+      "file": "licenses/Archivo-OFL.txt",
+      "status": 200,
+      "bytes": 4503,
+      "sha256": "c3c8402eec0e31dc9a76851235b1c02a0bb821488b2db8e35bcc2ab60ca8fc2b",
+      "expectedSha256": "c3c8402eec0e31dc9a76851235b1c02a0bb821488b2db8e35bcc2ab60ca8fc2b",
+      "match": true
+    },
+    {
+      "file": "licenses/SpaceMono-OFL.txt",
+      "status": 200,
+      "bytes": 4726,
+      "sha256": "761663b7fb7667764f42243f9b1b2bcfccf41b158a7ab508bed4961dcf377eab",
+      "expectedSha256": "761663b7fb7667764f42243f9b1b2bcfccf41b158a7ab508bed4961dcf377eab",
+      "match": true
+    },
+    {
+      "file": "licenses/rapier-LICENSE.txt",
+      "status": 200,
+      "bytes": 11343,
+      "sha256": "4c05555705e3efde601fb1252ae48f1d63992af8a8fb8947745b7fa834e8f519",
+      "expectedSha256": "4c05555705e3efde601fb1252ae48f1d63992af8a8fb8947745b7fa834e8f519",
+      "match": true
+    },
+    {
+      "file": "licenses/three.js-LICENSE.txt",
+      "status": 200,
+      "bytes": 1081,
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+      "expectedSha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+      "match": true
+    }
+  ]
+}

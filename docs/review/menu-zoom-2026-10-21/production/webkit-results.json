@@ -1,0 +1,786 @@
+{
+  "date": "2026-10-21T03:54:10.856Z",
+  "game": "bank-it",
+  "engine": "webkit",
+  "browser": "27.2",
+  "base": "https://bank-it.leotoby.com/",
+  "method": "Installed Chrome native CDP touch/pinch; Playwright WebKit trusted taps plus separate synthetic legacy policy; controlled browser clock for real result simulation; DPR 1 emulation; no physical iPad or performance claim",
+  "results": [
+    {
+      "ok": true,
+      "label": "bank-it/webkit/390: initial menu keeps vertical scroll policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/390: active play protects page gestures"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/390: separate synthetic legacy ownership policy",
+      "detail": {
+        "second": true,
+        "move": true,
+        "owned": true,
+        "desktop": false,
+        "wheel": false
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/390: trusted native Pause/build tap works"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/390: trusted rapid controls do not zoom"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/390: paused menu waits for explicit Resume"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/390: authored-aim fixture and actual Shoot reach physics result",
+      "detail": {
+        "phase": "idle",
+        "overlay": "complete",
+        "aim": {
+          "angleTenths": 614,
+          "powerTenths": 729
+        },
+        "phaseTick": 15,
+        "mode": {
+          "kind": "challenge",
+          "layout": "bin-there",
+          "attempts": 1,
+          "done": true
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": true,
+          "swish": true
+        },
+        "ball": {
+          "x": 8.592796325683594,
+          "y": 1.9569809436798096
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 23.353293413173652,
+        "insets": {
+          "top": 136,
+          "right": 0,
+          "bottom": 134,
+          "left": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/390: actual result restores vertical menu policy",
+      "detail": {
+        "view": {
+          "scale": 1,
+          "touchAction": "pan-y",
+          "active": false,
+          "enlarged": false,
+          "width": 390,
+          "height": 844
+        },
+        "state": {
+          "phase": "idle",
+          "overlay": "complete",
+          "aim": {
+            "angleTenths": 614,
+            "powerTenths": 729
+          },
+          "phaseTick": 15,
+          "mode": {
+            "kind": "challenge",
+            "layout": "bin-there",
+            "attempts": 1,
+            "done": true
+          },
+          "log": {
+            "impacts": [],
+            "sequence": [],
+            "distinct": [],
+            "distinctKinds": [],
+            "birdHit": false,
+            "groundBounce": false,
+            "rimTouches": 0,
+            "boardTouched": false,
+            "scored": true,
+            "swish": true
+          },
+          "ball": {
+            "x": 8.592796325683594,
+            "y": 1.9569809436798096
+          },
+          "muted": false,
+          "ghost": true,
+          "pxPerMetre": 23.353293413173652,
+          "insets": {
+            "top": 136,
+            "right": 0,
+            "bottom": 134,
+            "left": 0
+          }
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/390: result retains separate legacy pinch policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/820: initial menu keeps vertical scroll policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/820: active play protects page gestures"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/820: separate synthetic legacy ownership policy",
+      "detail": {
+        "second": true,
+        "move": true,
+        "owned": true,
+        "desktop": false,
+        "wheel": false
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/820: trusted native Pause/build tap works"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/820: trusted rapid controls do not zoom"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/820: paused menu waits for explicit Resume"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/820: authored-aim fixture and actual Shoot reach physics result",
+      "detail": {
+        "phase": "idle",
+        "overlay": "complete",
+        "aim": {
+          "angleTenths": 614,
+          "powerTenths": 729
+        },
+        "phaseTick": 16,
+        "mode": {
+          "kind": "challenge",
+          "layout": "bin-there",
+          "attempts": 1,
+          "done": true
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": true,
+          "swish": true
+        },
+        "ball": {
+          "x": 8.592796325683594,
+          "y": 1.9569809436798096
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 49.10179640718563,
+        "insets": {
+          "top": 92,
+          "right": 0,
+          "bottom": 54,
+          "left": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/820: actual result restores vertical menu policy",
+      "detail": {
+        "view": {
+          "scale": 1,
+          "touchAction": "pan-y",
+          "active": false,
+          "enlarged": false,
+          "width": 820,
+          "height": 1180
+        },
+        "state": {
+          "phase": "idle",
+          "overlay": "complete",
+          "aim": {
+            "angleTenths": 614,
+            "powerTenths": 729
+          },
+          "phaseTick": 16,
+          "mode": {
+            "kind": "challenge",
+            "layout": "bin-there",
+            "attempts": 1,
+            "done": true
+          },
+          "log": {
+            "impacts": [],
+            "sequence": [],
+            "distinct": [],
+            "distinctKinds": [],
+            "birdHit": false,
+            "groundBounce": false,
+            "rimTouches": 0,
+            "boardTouched": false,
+            "scored": true,
+            "swish": true
+          },
+          "ball": {
+            "x": 8.592796325683594,
+            "y": 1.9569809436798096
+          },
+          "muted": false,
+          "ghost": true,
+          "pxPerMetre": 49.10179640718563,
+          "insets": {
+            "top": 92,
+            "right": 0,
+            "bottom": 54,
+            "left": 0
+          }
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit/820: result retains separate legacy pinch policy"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit: desktop mouse/keyboard menus work"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit: desktop scale remains 1"
+    },
+    {
+      "ok": true,
+      "label": "bank-it/webkit: no page exceptions",
+      "detail": []
+    }
+  ],
+  "observations": [
+    {
+      "label": "bank-it/webkit/390",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "final": {
+        "scale": 1,
+        "touchAction": "pan-y",
+        "active": false,
+        "enlarged": false,
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "phase": "idle",
+        "overlay": "complete",
+        "aim": {
+          "angleTenths": 614,
+          "powerTenths": 729
+        },
+        "phaseTick": 15,
+        "mode": {
+          "kind": "challenge",
+          "layout": "bin-there",
+          "attempts": 1,
+          "done": true
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": true,
+          "swish": true
+        },
+        "ball": {
+          "x": 8.592796325683594,
+          "y": 1.9569809436798096
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 23.353293413173652,
+        "insets": {
+          "top": 136,
+          "right": 0,
+          "bottom": 134,
+          "left": 0
+        }
+      },
+      "trustedTouchTrace": [
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            100
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            100,
+            101
+          ]
+        },
+        {
+          "type": "touchmove",
+          "ids": [
+            100,
+            101
+          ]
+        },
+        {
+          "type": "touchcancel",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            910
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            910,
+            911
+          ]
+        },
+        {
+          "type": "touchcancel",
+          "ids": []
+        }
+      ],
+      "physicalDevice": false
+    },
+    {
+      "label": "bank-it/webkit/820",
+      "viewport": {
+        "width": 820,
+        "height": 1180
+      },
+      "final": {
+        "scale": 1,
+        "touchAction": "pan-y",
+        "active": false,
+        "enlarged": false,
+        "width": 820,
+        "height": 1180
+      },
+      "state": {
+        "phase": "idle",
+        "overlay": "complete",
+        "aim": {
+          "angleTenths": 614,
+          "powerTenths": 729
+        },
+        "phaseTick": 16,
+        "mode": {
+          "kind": "challenge",
+          "layout": "bin-there",
+          "attempts": 1,
+          "done": true
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": true,
+          "swish": true
+        },
+        "ball": {
+          "x": 8.592796325683594,
+          "y": 1.9569809436798096
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 49.10179640718563,
+        "insets": {
+          "top": 92,
+          "right": 0,
+          "bottom": 54,
+          "left": 0
+        }
+      },
+      "trustedTouchTrace": [
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            100
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            100,
+            101
+          ]
+        },
+        {
+          "type": "touchmove",
+          "ids": [
+            100,
+            101
+          ]
+        },
+        {
+          "type": "touchcancel",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            0
+          ]
+        },
+        {
+          "type": "touchend",
+          "ids": []
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            910
+          ]
+        },
+        {
+          "type": "touchstart",
+          "ids": [
+            910,
+            911
+          ]
+        },
+        {
+          "type": "touchcancel",
+          "ids": []
+        }
+      ],
+      "physicalDevice": false
+    }
+  ],
+  "errors": []
+}
