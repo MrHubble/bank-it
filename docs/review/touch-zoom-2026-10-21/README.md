@@ -10,4 +10,6 @@ Drag-to-aim/release-to-shoot, dead-zone and cancelled-drag restoration remain. H
 
 Official rationale: [MDN touch-action](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/touch-action), [WebKit viewport limits](https://webkit.org/blog/7367/new-interaction-behaviors-in-ios-10/), [Apple legacy gesture handling](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/HandlingEvents/HandlingEvents.html), [MDN passive listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
 
-Existing Pages project `bank-it`, main and canonical https://bank-it.leotoby.com/ remain. Publication, exact hashes and live results are pending.
+Published runtime `6688aa2723c781b7b1ca842fc071ee70ec5d1186` through existing Pages project `bank-it` and main. Automatic production deployment [`6c87ac3a-79a9-4fd0-86a4-2b452c88e594`](https://dash.cloudflare.com/?to=/fa68dcf0ffe51e98df8c91c47b5acf76/pages/view/bank-it/6c87ac3a-79a9-4fd0-86a4-2b452c88e594) succeeded. All 13 files at [the canonical domain](https://bank-it.leotoby.com/) returned HTTPS 200 and matched the tested SHA-256 bytes (4,399,030 raw bytes). Hosting/build settings and canonical URLs are unchanged.
+
+Live Chromium 27/27 and WebKit 17/17 pass (44 total), with no page exceptions or failed requests. Final live phone/tablet captures were visually reviewed. Exact files, check-run receipt and actual input results are in `production/`. These checks do not establish physical iPad/Safari pinch behavior or device performance.
