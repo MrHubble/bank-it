@@ -2,6 +2,7 @@ PASS bank-it-webkit-390x844: active play owns page gestures
 PASS bank-it-webkit-390x844: legacy pinch/gesture policy cancels native zoom
 PASS bank-it-webkit-390x844: HUD focus changes preserve gesture ownership
 PASS bank-it-webkit-390x844: desktop gestures are outside the page-zoom guard
+PASS bank-it-webkit-390x844: visibility lifecycle clears gesture ownership
 PASS bank-it-webkit-390x844: native rapid taps preserve viewport dimensions
 PASS bank-it-webkit-390x844: native menu/Pause remains usable
 PASS bank-it-webkit-390x844: menus restore ordinary page gestures
@@ -11,10 +12,11 @@ PASS bank-it-webkit-820x1180: active play owns page gestures
 PASS bank-it-webkit-820x1180: legacy pinch/gesture policy cancels native zoom
 PASS bank-it-webkit-820x1180: HUD focus changes preserve gesture ownership
 PASS bank-it-webkit-820x1180: desktop gestures are outside the page-zoom guard
+PASS bank-it-webkit-820x1180: visibility lifecycle clears gesture ownership
 PASS bank-it-webkit-820x1180: native rapid taps preserve viewport dimensions
 PASS bank-it-webkit-820x1180: native menu/Pause remains usable
 PASS bank-it-webkit-820x1180: menus restore ordinary page gestures
 PASS bank-it-webkit-820x1180: menu legacy gestures are not cancelled
 PASS bank-it-webkit-820x1180: game controls stay within the viewport
 PASS bank-it-webkit: no page exceptions
-19/19 checks passed
+21/21 checks passed

@@ -6,7 +6,7 @@ Running play now applies `touch-action: none` to a shared ancestor of canvas and
 
 Drag-to-aim/release-to-shoot, dead-zone and cancelled-drag restoration remain. HUD actions accept a second finger; menu buttons retain native activation and scrolling.
 
-56 automated tests and the typechecked Vite production build pass. Final local chromium 29/29, webkit 19/19 pass. Screenshots were visually reviewed. Native-input evidence is in `local/`; phone 390×844 and tablet 820×1180 keep scale 1 and visible controls in bounds. Chromium uses actual CDP multitouch. WebKit uses native taps plus separately labelled synthetic Touch/Gesture policy probes; physical iPad/Safari pinch is unverified. Functional browser jobs may overlap other games; no new performance claim is made.
+56 automated tests and the typechecked Vite production build pass. Final local chromium 31/31, webkit 21/21 pass. Screenshots were visually reviewed. Native-input evidence is in `local/`; phone 390×844 and tablet 820×1180 keep scale 1 and visible controls in bounds. Chromium uses actual CDP multitouch. WebKit uses native taps plus separately labelled synthetic Touch/Gesture policy probes; physical iPad/Safari pinch is unverified. Functional browser jobs may overlap other games; no new performance claim is made.
 
 Official rationale: [MDN touch-action](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/touch-action), [WebKit viewport limits](https://webkit.org/blog/7367/new-interaction-behaviors-in-ios-10/), [Apple legacy gesture handling](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/HandlingEvents/HandlingEvents.html), [MDN passive listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
 
@@ -14,4 +14,6 @@ Published runtime `6688aa2723c781b7b1ca842fc071ee70ec5d1186` through existing Pa
 
 Live Chromium 27/27 and WebKit 17/17 pass (44 total), with no page exceptions or failed requests. Final live phone/tablet captures were visually reviewed. Exact files, check-run receipt and actual input results are in `production/`. These checks do not establish physical iPad/Safari pinch behavior or device performance.
 
-Focus lifecycle follow-up: descendant HUD blur must not clear a game touch. Blur/pagehide use non-capturing listeners and require the surface itself as event target; Touch/Gesture events remain capture/non-passive. A focused policy regression and real DOM focus-change browser probe cover this. The corrected guard passes chromium 29/29, webkit 19/19 locally; publication verification follows.
+Focus lifecycle follow-up: descendant HUD blur must not clear a game touch. Blur/pagehide use non-capturing listeners and require the surface itself as event target; Touch/Gesture events remain capture/non-passive. A focused policy regression and real DOM focus-change browser probe cover this. The corrected guard passes chromium 31/31, webkit 21/21 locally; publication verification follows.
+
+The existing visibility-change input cancellation also clears gesture ownership, verified through the actual controller listener.

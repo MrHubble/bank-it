@@ -177,6 +177,7 @@ export class Game {
     document.addEventListener(
       "visibilitychange",
       () => {
+        this.touchZoom.clear();
         if (document.hidden) {
           this.input.cancel();
           this.loop.stop();

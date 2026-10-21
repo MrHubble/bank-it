@@ -31,6 +31,10 @@ try{
   check(policy.multi&&policy.move&&policy.gestures.every(Boolean),`${label}: legacy pinch/gesture policy cancels native zoom`,policy);
   check(policy.descendantBlurOwned,`${label}: HUD focus changes preserve gesture ownership`);
   check(!policy.desktop&&!policy.wheel,`${label}: desktop gestures are outside the page-zoom guard`);
+  if(game==='bank-it'){
+   const visibility=await page.evaluate(()=>{const target=document.querySelector('canvas'),a={identifier:150,target,clientX:100,clientY:180};const send=(type,changed=[],touches=[])=>{const event=new Event(type,{bubbles:true,cancelable:true});Object.defineProperties(event,{changedTouches:{value:changed},touches:{value:touches}});target.dispatchEvent(event);return event.defaultPrevented;};send('touchstart',[a],[a]);const before=send('gesturechange');document.dispatchEvent(new Event('visibilitychange'));const after=send('gesturechange');send('touchcancel');return{before,after};});
+   check(visibility.before&&!visibility.after,`${label}: visibility lifecycle clears gesture ownership`,visibility);
+  }
   const repeat=game==='send-it'?'#reset':game==='dad-drain'?'[data-action=why]':game==='pickup-sneak'?'#retry':'#btn-retry';
   for(let i=0;i<8;i++){await tap(repeat);await sleep(65);}
   const rapid=await view();check(rapid.scale===1&&rapid.width===start.width&&rapid.height===start.height,`${label}: native rapid taps preserve viewport dimensions`,rapid);

@@ -13,8 +13,8 @@ dist/assets/space-mono-latin-700-normal-mWgeinG7.woff2     16.72 kB
 dist/assets/archivo-latin-wdth-normal-DY7AcnAa.woff2       90.10 kB
 dist/assets/archivo-latin-wdth-italic-BuvkOFDm.woff2      101.67 kB
 dist/assets/index-D7YBXmbr.css                             18.94 kB │ gzip:     4.61 kB
-dist/assets/index-Cxxp-xqm.js                               2.36 kB │ gzip:     1.21 kB
-dist/assets/game-4XXd-1ok.js                              680.66 kB │ gzip:   180.92 kB
+dist/assets/index-DFRE5Ujp.js                               2.36 kB │ gzip:     1.21 kB
+dist/assets/game-BUBavYVm.js                              680.68 kB │ gzip:   180.93 kB
 dist/assets/rapier-QzNZ7ZNU.js                          3,446.10 kB │ gzip: 1,313.63 kB
 
-✓ built in 216ms
+✓ built in 246ms

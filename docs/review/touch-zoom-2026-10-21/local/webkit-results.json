@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-21T02:08:38.374Z",
+  "date": "2026-10-21T02:14:27.208Z",
   "game": "bank-it",
   "engine": "webkit",
   "browser": "27.2",
@@ -39,6 +39,14 @@
     {
       "ok": true,
       "label": "bank-it-webkit-390x844: desktop gestures are outside the page-zoom guard"
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-390x844: visibility lifecycle clears gesture ownership",
+      "detail": {
+        "before": true,
+        "after": false
+      }
     },
     {
       "ok": true,
@@ -174,6 +182,14 @@
     },
     {
       "ok": true,
+      "label": "bank-it-webkit-820x1180: visibility lifecycle clears gesture ownership",
+      "detail": {
+        "before": true,
+        "after": false
+      }
+    },
+    {
+      "ok": true,
       "label": "bank-it-webkit-820x1180: native rapid taps preserve viewport dimensions",
       "detail": {
         "scale": 1,
@@ -303,7 +319,7 @@
           "angleTenths": 520,
           "powerTenths": 700
         },
-        "phaseTick": 12,
+        "phaseTick": 14,
         "mode": {
           "kind": "freestyle",
           "layout": "bin-there",
@@ -440,7 +456,7 @@
           "angleTenths": 520,
           "powerTenths": 700
         },
-        "phaseTick": 13,
+        "phaseTick": 16,
         "mode": {
           "kind": "freestyle",
           "layout": "bin-there",
