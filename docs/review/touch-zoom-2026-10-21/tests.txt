@@ -7,6 +7,6 @@
 
 
  Test Files  7 passed (7)
-      Tests  55 passed (55)
-   Start at  12:46:53
-   Duration  1.52s (tests 72%, transform 21%, import 6%, worker 1%)
+      Tests  56 passed (56)
+   Start at  13:07:30
+   Duration  766ms (tests 58%, transform 25%, import 15%, worker 2%)

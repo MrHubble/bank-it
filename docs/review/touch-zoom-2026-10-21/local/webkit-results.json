@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-21T01:52:26.593Z",
+  "date": "2026-10-21T02:08:38.374Z",
   "game": "bank-it",
   "engine": "webkit",
   "browser": "27.2",
@@ -27,9 +27,14 @@
           true,
           true
         ],
+        "descendantBlurOwned": true,
         "desktop": false,
         "wheel": false
       }
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-390x844: HUD focus changes preserve gesture ownership"
     },
     {
       "ok": true,
@@ -154,9 +159,14 @@
           true,
           true
         ],
+        "descendantBlurOwned": true,
         "desktop": false,
         "wheel": false
       }
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-820x1180: HUD focus changes preserve gesture ownership"
     },
     {
       "ok": true,
@@ -293,7 +303,7 @@
           "angleTenths": 520,
           "powerTenths": 700
         },
-        "phaseTick": 20,
+        "phaseTick": 12,
         "mode": {
           "kind": "freestyle",
           "layout": "bin-there",
@@ -430,7 +440,7 @@
           "angleTenths": 520,
           "powerTenths": 700
         },
-        "phaseTick": 30,
+        "phaseTick": 13,
         "mode": {
           "kind": "freestyle",
           "layout": "bin-there",

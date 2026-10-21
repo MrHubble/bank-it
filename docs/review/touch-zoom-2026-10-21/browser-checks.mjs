@@ -26,9 +26,10 @@ try{
   const start=await view();check(start.scale===1&&start.touchAction==='none',`${label}: active play owns page gestures`,start);
   const policy=await page.evaluate(()=>{
    const target=document.querySelector('canvas');const send=(type,changed=[],touches=[])=>{const event=new Event(type,{bubbles:true,cancelable:true});Object.defineProperties(event,{changedTouches:{value:changed},touches:{value:touches}});target.dispatchEvent(event);return event.defaultPrevented;};
-   const a={identifier:101,target,clientX:80,clientY:150},b={identifier:102,target,clientX:220,clientY:150};send('touchstart',[a],[a]);const multi=send('touchstart',[b],[a,b]),move=send('touchmove',[a,b],[a,b]);const gestures=['gesturestart','gesturechange','gestureend'].map(type=>send(type));send('touchcancel');const desktop=send('gesturestart');const wheel=new WheelEvent('wheel',{bubbles:true,cancelable:true,ctrlKey:true,deltaY:-10});window.dispatchEvent(wheel);return{multi,move,gestures,desktop,wheel:wheel.defaultPrevented};
+   const a={identifier:101,target,clientX:80,clientY:150},b={identifier:102,target,clientX:220,clientY:150};send('touchstart',[a],[a]);const multi=send('touchstart',[b],[a,b]),move=send('touchmove',[a,b],[a,b]);const gestures=['gesturestart','gesturechange','gestureend'].map(type=>send(type));const focusable=[...document.querySelectorAll('button:not([disabled])')].filter(e=>e.getClientRects().length);focusable[0].focus({preventScroll:true});focusable[1].focus({preventScroll:true});const descendantBlurOwned=send('gesturechange');send('touchcancel');const desktop=send('gesturestart');const wheel=new WheelEvent('wheel',{bubbles:true,cancelable:true,ctrlKey:true,deltaY:-10});window.dispatchEvent(wheel);return{multi,move,gestures,descendantBlurOwned,desktop,wheel:wheel.defaultPrevented};
   });
   check(policy.multi&&policy.move&&policy.gestures.every(Boolean),`${label}: legacy pinch/gesture policy cancels native zoom`,policy);
+  check(policy.descendantBlurOwned,`${label}: HUD focus changes preserve gesture ownership`);
   check(!policy.desktop&&!policy.wheel,`${label}: desktop gestures are outside the page-zoom guard`);
   const repeat=game==='send-it'?'#reset':game==='dad-drain'?'[data-action=why]':game==='pickup-sneak'?'#retry':'#btn-retry';
   for(let i=0;i<8;i++){await tap(repeat);await sleep(65);}

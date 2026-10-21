@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import { bindGameTouchZoom, bindPressAction } from '../src/input/gameTouchZoom.ts';
 function setup() {
   const surface = new EventTarget(), control = new EventTarget(), menu = new EventTarget();
+  const registrations: {type: string; listener: EventListenerOrEventListenerObject | null; options?: boolean | AddEventListenerOptions}[] = [];
+  const add = surface.addEventListener.bind(surface);
+  surface.addEventListener = (type, listener, options) => { registrations.push({type, listener, options}); add(type, listener, options); };
   let active = true, clock = 0;
   const policy = bindGameTouchZoom({ surface, isPlaying: () => active, isGameTarget: target => target === control, isDirectControl: target => target === control, now: () => clock });
   const touch = (identifier: number, target = control) => ({ identifier, target, clientX: 10, clientY: 10 });
@@ -10,7 +13,7 @@ function setup() {
   const send = (type: string, changedTouches: Touch[] = [], touches: Touch[] = []) => {
     const event = new Event(type, { cancelable: true }); Object.assign(event, { changedTouches, touches }); surface.dispatchEvent(event); return event;
   };
-  return { surface, menu, touch, send, policy, active: (value: boolean) => active = value, tick: (ms: number) => clock += ms };
+  return { surface, menu, touch, send, policy, registrations, active: (value: boolean) => active = value, tick: (ms: number) => clock += ms };
 }
 test('rapid controls and mixed fingers prevent page zoom without swallowing release', () => {
   const t = setup(), a = t.touch(1), b = t.touch(2); let releases = 0;
@@ -35,4 +38,16 @@ test('a second-finger HUD press runs once and keyboard activation remains native
   assert.equal(send('pointerdown', { button: 0, isPrimary: false, pointerType: 'touch' }).defaultPrevented, true);
   send('click', { detail: 1 }); assert.equal(count, 1); send('click', { detail: 0 }); assert.equal(count, 2);
   dispose(); send('click', { detail: 0 }); assert.equal(count, 2);
+});
+
+test('HUD descendant blur preserves ownership while real surface blur clears it', () => {
+  const t = setup(), a = t.touch(1); t.send('touchstart', [a], [a]);
+  for (const type of ['blur', 'pagehide']) {
+    const registration = t.registrations.find(entry => entry.type === type)!;
+    assert.equal((registration.options as AddEventListenerOptions).capture, false);
+    const event = new Event(type); Object.defineProperty(event, 'target', {value: t.menu});
+    if (typeof registration.listener === 'function') registration.listener(event);
+    assert.equal(t.send('gesturechange').defaultPrevented, true);
+  }
+  t.send('blur'); assert.equal(t.send('gesturechange').defaultPrevented, false);
 });

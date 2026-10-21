@@ -12,7 +12,7 @@ export function bindGameTouchZoom({ surface, isPlaying, isGameTarget, isDirectCo
   let multi = false, lastTap: {t: number; x: number; y: number} | null = null;
   const clear = () => { owned.clear(); multi = false; lastTap = null; };
   const listen = (type: string, handler: (event: TouchEvent) => void) => {
-    const options = { capture: true, passive: false };
+    const options = { capture: !['blur', 'pagehide'].includes(type), passive: false };
     const listener = (event: Event) => handler(event as TouchEvent);
     surface.addEventListener(type, listener, options);
     removers.push(() => surface.removeEventListener(type, listener, options));
@@ -56,7 +56,7 @@ export function bindGameTouchZoom({ surface, isPlaying, isGameTarget, isDirectCo
     // A real touch sequence distinguishes iPad gestures from a Mac trackpad pinch.
     if (isPlaying() && owned.size) prevent(event);
   });
-  for (const type of ['blur', 'pagehide']) listen(type, clear);
+  for (const type of ['blur', 'pagehide']) listen(type, event => { if (event.target === surface) clear(); });
   return { clear, dispose() { clear(); for (const remove of removers) remove(); } };
 }
 
