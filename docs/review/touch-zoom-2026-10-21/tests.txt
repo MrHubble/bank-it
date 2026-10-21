@@ -1,0 +1,12 @@
+
+> bank-it@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.2 /Users/mark/sites/bank-it
+
+
+ Test Files  7 passed (7)
+      Tests  55 passed (55)
+   Start at  12:46:53
+   Duration  1.52s (tests 72%, transform 21%, import 6%, worker 1%)

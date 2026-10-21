@@ -1,0 +1,28 @@
+PASS bank-it-chromium-390x844: active play owns page gestures
+PASS bank-it-chromium-390x844: legacy pinch/gesture policy cancels native zoom
+PASS bank-it-chromium-390x844: desktop gestures are outside the page-zoom guard
+PASS bank-it-chromium-390x844: native rapid taps preserve viewport dimensions
+PASS bank-it-chromium-390x844: held native drag changes aim
+PASS bank-it-chromium-390x844: second-finger menu/pause works while a game finger is held
+PASS bank-it-chromium-390x844: menu cancels drag and restores aim without firing
+PASS bank-it-chromium-390x844: menus restore ordinary page gestures
+PASS bank-it-chromium-390x844: menu legacy gestures are not cancelled
+PASS bank-it-chromium-390x844: real two-finger pinch leaves scale and controls intact
+PASS bank-it-chromium-390x844: touchcancel never fires the drag shot
+PASS bank-it-chromium-390x844: real single-finger drag release still shoots
+PASS bank-it-chromium-390x844: game controls stay within the viewport
+PASS bank-it-chromium-820x1180: active play owns page gestures
+PASS bank-it-chromium-820x1180: legacy pinch/gesture policy cancels native zoom
+PASS bank-it-chromium-820x1180: desktop gestures are outside the page-zoom guard
+PASS bank-it-chromium-820x1180: native rapid taps preserve viewport dimensions
+PASS bank-it-chromium-820x1180: held native drag changes aim
+PASS bank-it-chromium-820x1180: second-finger menu/pause works while a game finger is held
+PASS bank-it-chromium-820x1180: menu cancels drag and restores aim without firing
+PASS bank-it-chromium-820x1180: menus restore ordinary page gestures
+PASS bank-it-chromium-820x1180: menu legacy gestures are not cancelled
+PASS bank-it-chromium-820x1180: real two-finger pinch leaves scale and controls intact
+PASS bank-it-chromium-820x1180: touchcancel never fires the drag shot
+PASS bank-it-chromium-820x1180: real single-finger drag release still shoots
+PASS bank-it-chromium-820x1180: game controls stay within the viewport
+PASS bank-it-chromium: no page exceptions
+27/27 checks passed

@@ -115,3 +115,7 @@ Every Called Shot records a verified solution (launch position, angle, power and
 The `bank-it` Cloudflare Pages project is connected to this repository. Its production branch is `main`, its build command is `npm run build`, and its output directory is `dist`. Cloudflare installs dependencies and builds on each push. The Vite build uses `/` as its asset base, because the game is served at the root of its own domain.
 
 Run `npm test` and `npm run build` before pushing a change. After the production deployment, open [bank-it.leotoby.com](https://bank-it.leotoby.com/) and check that the game starts and its scripts, fonts, and images load. The [LeoToby hosting guide](https://github.com/MrHubble/leotoby/blob/main/docs/hosting.md) records how the homepage links to this game and how old `/games/bank-it/` URLs redirect here. Do not copy a build into the LeoToby repository.
+
+## Touch gestures during play
+
+Active gameplay controls suppress accidental page pinch/double-tap zoom; menus restore ordinary browser gestures. Existing drag/camera controls and keyboard input remain. [Verification and device limits](docs/review/touch-zoom-2026-10-21/README.md).

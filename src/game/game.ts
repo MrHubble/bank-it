@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { Sound } from "../audio/sound.ts";
 import { AimInput } from "../input/aimInput.ts";
+import { bindGameTouchZoom } from "../input/gameTouchZoom.ts";
 import { CHALLENGES, type ChallengeDef, challengeById } from "../levels/challenges.ts";
 import { LAYOUTS, layoutById } from "../levels/layouts.ts";
 import { type LayoutDef, hoopCentre, hoopOf } from "../props/defs.ts";
@@ -77,6 +78,7 @@ export class Game {
   private layout: LayoutDef;
   private probe: PreviewProbe;
   private mode: Mode | null = null;
+  private readonly touchZoom: ReturnType<typeof bindGameTouchZoom>;
   private phase: Phase = "idle";
   private aim: Aim;
   private dragging = false;
@@ -145,6 +147,12 @@ export class Game {
       },
       () => Math.max(110, Math.min(260, Math.min(this.stage.width, this.stage.height) * 0.34)),
     );
+    this.touchZoom = bindGameTouchZoom({
+      surface: window,
+      isPlaying: () => !!this.mode && this.phase !== 'idle' && !this.overlay.open && !document.hidden,
+      isGameTarget: target => target instanceof Element && !target.closest('#overlay'),
+      isDirectControl: target => target instanceof Element && (!target.closest('button') || !!target.closest('#hud button')),
+    });
     // Tap during a celebration or miss to skip straight to the next shot.
     this.stage.renderer.domElement.addEventListener(
       "pointerdown",
@@ -201,6 +209,8 @@ export class Game {
   dispose(): void {
     this.loop.stop();
     this.ac.abort();
+    this.touchZoom.dispose();
+    document.body.classList.remove('game-playing');
     this.input.dispose();
     this.hud.dispose();
     this.overlay.dispose();
@@ -310,9 +320,11 @@ export class Game {
   // ------------------------------------------------------------- attempts
 
   private newAttempt(): void {
+    this.touchZoom.clear();
     this.disposeShot();
     this.fx.clear();
     this.phase = "ready";
+    this.syncTouchZoom();
     this.phaseTick = 0;
     this.birdHitAt = -1;
     this.metCount = 0;
@@ -469,6 +481,7 @@ export class Game {
   }
 
   private frame(alpha: number, dt: number): void {
+    this.syncTouchZoom();
     this.time += dt;
     const shot = this.shot;
     const phase = this.phase === "ready" || !shot ? this.phaseTick + (this.overlay.open ? 0 : alpha) : shot.phaseTick + (this.halted ? 0 : alpha);
@@ -809,9 +822,16 @@ export class Game {
     };
   }
 
+  private syncTouchZoom(): void {
+    const active = !!this.mode && this.phase !== 'idle' && !this.overlay.open && !document.hidden;
+    document.body.classList.toggle('game-playing', active);
+    if (!active) this.touchZoom.clear();
+  }
+
   private showScreen(screen: Screen, from: Screen | null = null, extra: Partial<OverlayModel> = {}): void {
     this.input.cancel();
     this.overlay.show(screen, this.overlayModel(extra), from);
+    this.syncTouchZoom();
   }
 
   private openPause(): void {
@@ -865,7 +885,7 @@ export class Game {
         break;
       }
       case "close":
-        if (this.mode && this.phase !== "idle") this.overlay.hide();
+        if (this.mode && this.phase !== "idle") { this.overlay.hide(); this.syncTouchZoom(); }
         else if (!this.mode) this.showScreen("title");
         break;
     }

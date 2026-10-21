@@ -1,3 +1,4 @@
+import { bindPressAction } from '../input/gameTouchZoom.ts';
 import type { ChallengeDef } from "../levels/challenges.ts";
 import type { RequirementProgress } from "../rules/challenges.ts";
 import { formatPoints, type ShotScore } from "../rules/scoring.ts";
@@ -47,11 +48,11 @@ export class Hud {
 
   constructor(cb: HudCallbacks) {
     const o = { signal: this.ac.signal };
-    this.shootBtn.addEventListener("click", () => cb.shoot(), o);
-    this.retryBtn.addEventListener("click", () => cb.retry(), o);
-    this.ghostBtn.addEventListener("click", () => cb.toggleGhost(), o);
-    this.soundBtn.addEventListener("click", () => cb.toggleMute(), o);
-    this.menuBtn.addEventListener("click", () => cb.menu(), o);
+    bindPressAction(this.shootBtn, () => cb.shoot(), o);
+    bindPressAction(this.retryBtn, () => cb.retry(), o);
+    bindPressAction(this.ghostBtn, () => cb.toggleGhost(), o);
+    bindPressAction(this.soundBtn, () => cb.toggleMute(), o);
+    bindPressAction(this.menuBtn, () => cb.menu(), o);
     this.root.addEventListener("pointerdown", () => cb.gesture(), o);
     // Hold a nudge button to keep nudging.
     for (const b of this.root.querySelectorAll<HTMLButtonElement>("[data-nudge]")) {

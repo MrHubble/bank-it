@@ -1,0 +1,546 @@
+{
+  "date": "2026-10-21T01:52:26.593Z",
+  "game": "bank-it",
+  "engine": "webkit",
+  "browser": "27.2",
+  "base": "http://127.0.0.1:4204/",
+  "results": [
+    {
+      "ok": true,
+      "label": "bank-it-webkit-390x844: active play owns page gestures",
+      "detail": {
+        "scale": 1,
+        "width": 390,
+        "height": 844,
+        "active": true,
+        "touchAction": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-390x844: legacy pinch/gesture policy cancels native zoom",
+      "detail": {
+        "multi": true,
+        "move": true,
+        "gestures": [
+          true,
+          true,
+          true
+        ],
+        "desktop": false,
+        "wheel": false
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-390x844: desktop gestures are outside the page-zoom guard"
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-390x844: native rapid taps preserve viewport dimensions",
+      "detail": {
+        "scale": 1,
+        "width": 390,
+        "height": 844,
+        "active": true,
+        "touchAction": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-390x844: native menu/Pause remains usable"
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-390x844: menus restore ordinary page gestures"
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-390x844: menu legacy gestures are not cancelled"
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-390x844: game controls stay within the viewport",
+      "detail": [
+        {
+          "id": "btn-ghost",
+          "x": 246,
+          "y": 6,
+          "right": 288,
+          "bottom": 48,
+          "reachable": true
+        },
+        {
+          "id": "btn-sound",
+          "x": 294,
+          "y": 6,
+          "right": 336,
+          "bottom": 48,
+          "reachable": true
+        },
+        {
+          "id": "btn-menu",
+          "x": 342,
+          "y": 6,
+          "right": 384,
+          "bottom": 48,
+          "reachable": true
+        },
+        {
+          "x": 9,
+          "y": 747,
+          "right": 49,
+          "bottom": 785,
+          "reachable": true
+        },
+        {
+          "x": 149,
+          "y": 747,
+          "right": 189,
+          "bottom": 785,
+          "reachable": true
+        },
+        {
+          "x": 201,
+          "y": 747,
+          "right": 241,
+          "bottom": 785,
+          "reachable": true
+        },
+        {
+          "x": 341,
+          "y": 747,
+          "right": 381,
+          "bottom": 785,
+          "reachable": true
+        },
+        {
+          "id": "btn-shoot",
+          "x": 6,
+          "y": 794,
+          "right": 322,
+          "bottom": 838,
+          "reachable": true
+        },
+        {
+          "id": "btn-retry",
+          "x": 328,
+          "y": 794,
+          "right": 384,
+          "bottom": 838,
+          "reachable": true
+        }
+      ]
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-820x1180: active play owns page gestures",
+      "detail": {
+        "scale": 1,
+        "width": 820,
+        "height": 1180,
+        "active": true,
+        "touchAction": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-820x1180: legacy pinch/gesture policy cancels native zoom",
+      "detail": {
+        "multi": true,
+        "move": true,
+        "gestures": [
+          true,
+          true,
+          true
+        ],
+        "desktop": false,
+        "wheel": false
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-820x1180: desktop gestures are outside the page-zoom guard"
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-820x1180: native rapid taps preserve viewport dimensions",
+      "detail": {
+        "scale": 1,
+        "width": 820,
+        "height": 1180,
+        "active": true,
+        "touchAction": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-820x1180: native menu/Pause remains usable"
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-820x1180: menus restore ordinary page gestures"
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-820x1180: menu legacy gestures are not cancelled"
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit-820x1180: game controls stay within the viewport",
+      "detail": [
+        {
+          "id": "btn-ghost",
+          "x": 672.171875,
+          "y": 9.828125,
+          "right": 714.171875,
+          "bottom": 51.828125,
+          "reachable": true
+        },
+        {
+          "id": "btn-sound",
+          "x": 720.171875,
+          "y": 9.828125,
+          "right": 762.171875,
+          "bottom": 51.828125,
+          "reachable": true
+        },
+        {
+          "id": "btn-menu",
+          "x": 768.171875,
+          "y": 9.828125,
+          "right": 810.171875,
+          "bottom": 51.828125,
+          "reachable": true
+        },
+        {
+          "x": 345.59375,
+          "y": 1129.171875,
+          "right": 381.59375,
+          "bottom": 1167.171875,
+          "reachable": true
+        },
+        {
+          "x": 443.59375,
+          "y": 1129.171875,
+          "right": 479.59375,
+          "bottom": 1167.171875,
+          "reachable": true
+        },
+        {
+          "x": 491.59375,
+          "y": 1129.171875,
+          "right": 527.59375,
+          "bottom": 1167.171875,
+          "reachable": true
+        },
+        {
+          "x": 589.59375,
+          "y": 1129.171875,
+          "right": 625.59375,
+          "bottom": 1167.171875,
+          "reachable": true
+        },
+        {
+          "id": "btn-shoot",
+          "x": 634.59375,
+          "y": 1126.171875,
+          "right": 758.171875,
+          "bottom": 1170.171875,
+          "reachable": true
+        },
+        {
+          "id": "btn-retry",
+          "x": 764.171875,
+          "y": 1126.171875,
+          "right": 810.171875,
+          "bottom": 1170.171875,
+          "reachable": true
+        }
+      ]
+    },
+    {
+      "ok": true,
+      "label": "bank-it-webkit: no page exceptions",
+      "detail": []
+    }
+  ],
+  "observations": [
+    {
+      "label": "bank-it-webkit-390x844",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "start": {
+        "scale": 1,
+        "width": 390,
+        "height": 844,
+        "active": true,
+        "touchAction": "none"
+      },
+      "final": {
+        "scale": 1,
+        "width": 390,
+        "height": 844,
+        "active": true,
+        "touchAction": "none"
+      },
+      "state": {
+        "phase": "ready",
+        "overlay": null,
+        "aim": {
+          "angleTenths": 520,
+          "powerTenths": 700
+        },
+        "phaseTick": 20,
+        "mode": {
+          "kind": "freestyle",
+          "layout": "bin-there",
+          "shotsLeft": 10,
+          "score": 0,
+          "baskets": 0,
+          "bestShot": 0,
+          "bestChain": null,
+          "bestChainScore": 0
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": false,
+          "swish": false
+        },
+        "ball": {
+          "x": 3,
+          "y": 1.5
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 23.353293413173652,
+        "insets": {
+          "top": 107,
+          "right": 0,
+          "bottom": 149,
+          "left": 0
+        }
+      },
+      "bounds": [
+        {
+          "id": "btn-ghost",
+          "x": 246,
+          "y": 6,
+          "right": 288,
+          "bottom": 48,
+          "reachable": true
+        },
+        {
+          "id": "btn-sound",
+          "x": 294,
+          "y": 6,
+          "right": 336,
+          "bottom": 48,
+          "reachable": true
+        },
+        {
+          "id": "btn-menu",
+          "x": 342,
+          "y": 6,
+          "right": 384,
+          "bottom": 48,
+          "reachable": true
+        },
+        {
+          "x": 9,
+          "y": 747,
+          "right": 49,
+          "bottom": 785,
+          "reachable": true
+        },
+        {
+          "x": 149,
+          "y": 747,
+          "right": 189,
+          "bottom": 785,
+          "reachable": true
+        },
+        {
+          "x": 201,
+          "y": 747,
+          "right": 241,
+          "bottom": 785,
+          "reachable": true
+        },
+        {
+          "x": 341,
+          "y": 747,
+          "right": 381,
+          "bottom": 785,
+          "reachable": true
+        },
+        {
+          "id": "btn-shoot",
+          "x": 6,
+          "y": 794,
+          "right": 322,
+          "bottom": 838,
+          "reachable": true
+        },
+        {
+          "id": "btn-retry",
+          "x": 328,
+          "y": 794,
+          "right": 384,
+          "bottom": 838,
+          "reachable": true
+        }
+      ],
+      "nativeMultitouch": false,
+      "physicalDevice": false
+    },
+    {
+      "label": "bank-it-webkit-820x1180",
+      "viewport": {
+        "width": 820,
+        "height": 1180
+      },
+      "start": {
+        "scale": 1,
+        "width": 820,
+        "height": 1180,
+        "active": true,
+        "touchAction": "none"
+      },
+      "final": {
+        "scale": 1,
+        "width": 820,
+        "height": 1180,
+        "active": true,
+        "touchAction": "none"
+      },
+      "state": {
+        "phase": "ready",
+        "overlay": null,
+        "aim": {
+          "angleTenths": 520,
+          "powerTenths": 700
+        },
+        "phaseTick": 30,
+        "mode": {
+          "kind": "freestyle",
+          "layout": "bin-there",
+          "shotsLeft": 10,
+          "score": 0,
+          "baskets": 0,
+          "bestShot": 0,
+          "bestChain": null,
+          "bestChainScore": 0
+        },
+        "log": {
+          "impacts": [],
+          "sequence": [],
+          "distinct": [],
+          "distinctKinds": [],
+          "birdHit": false,
+          "groundBounce": false,
+          "rimTouches": 0,
+          "boardTouched": false,
+          "scored": false,
+          "swish": false
+        },
+        "ball": {
+          "x": 3,
+          "y": 1.5
+        },
+        "muted": false,
+        "ghost": true,
+        "pxPerMetre": 49.10179640718563,
+        "insets": {
+          "top": 63,
+          "right": 0,
+          "bottom": 54,
+          "left": 0
+        }
+      },
+      "bounds": [
+        {
+          "id": "btn-ghost",
+          "x": 672.171875,
+          "y": 9.828125,
+          "right": 714.171875,
+          "bottom": 51.828125,
+          "reachable": true
+        },
+        {
+          "id": "btn-sound",
+          "x": 720.171875,
+          "y": 9.828125,
+          "right": 762.171875,
+          "bottom": 51.828125,
+          "reachable": true
+        },
+        {
+          "id": "btn-menu",
+          "x": 768.171875,
+          "y": 9.828125,
+          "right": 810.171875,
+          "bottom": 51.828125,
+          "reachable": true
+        },
+        {
+          "x": 345.59375,
+          "y": 1129.171875,
+          "right": 381.59375,
+          "bottom": 1167.171875,
+          "reachable": true
+        },
+        {
+          "x": 443.59375,
+          "y": 1129.171875,
+          "right": 479.59375,
+          "bottom": 1167.171875,
+          "reachable": true
+        },
+        {
+          "x": 491.59375,
+          "y": 1129.171875,
+          "right": 527.59375,
+          "bottom": 1167.171875,
+          "reachable": true
+        },
+        {
+          "x": 589.59375,
+          "y": 1129.171875,
+          "right": 625.59375,
+          "bottom": 1167.171875,
+          "reachable": true
+        },
+        {
+          "id": "btn-shoot",
+          "x": 634.59375,
+          "y": 1126.171875,
+          "right": 758.171875,
+          "bottom": 1170.171875,
+          "reachable": true
+        },
+        {
+          "id": "btn-retry",
+          "x": 764.171875,
+          "y": 1126.171875,
+          "right": 810.171875,
+          "bottom": 1170.171875,
+          "reachable": true
+        }
+      ],
+      "nativeMultitouch": false,
+      "physicalDevice": false
+    }
+  ],
+  "errors": [],
+  "network": []
+}
